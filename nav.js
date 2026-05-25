@@ -38,6 +38,10 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goPrev();
 });
 
+document.addEventListener('click', function(e) {
+  if (e.target.closest('a, button, [onclick], .dot, .tag-item, .mode-card, .tips-trigger, .tips-overlay, .scenario')) return;
+  e.clientX >= window.innerWidth / 2 ? goNext() : goPrev();
+});
 
 var _wcd = false;
 window.addEventListener('wheel', function(e) {
