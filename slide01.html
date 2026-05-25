@@ -5,6 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Roo — 타이틀</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .hero-anim-wrap { position: relative; display: inline-block; }
+
+    /* 굴러오는 주황 공 */
+    .hero-ball {
+      position: absolute;
+      width: 72px; height: 72px;
+      background: var(--primary);
+      border-radius: 50%;
+      top: 50%; left: -16px;
+      transform: translateY(-50%);
+      z-index: 0;
+      animation: ballRoll 0.85s cubic-bezier(.3,0,.25,1) both;
+    }
+    @keyframes ballRoll {
+      0%   { transform: translateY(-50%) translateX(-520px) rotate(-900deg); opacity: 0; }
+      40%  { opacity: 1; }
+      100% { transform: translateY(-50%) translateX(0)     rotate(0deg);    opacity: 1; }
+    }
+
+    /* 글자 하나씩 슬라이드 인 */
+    .hero-name { position: relative; z-index: 1; }
+    .hl { display: inline-block; animation: letterSlide 0.45s cubic-bezier(.4,0,.2,1) both; }
+    .hl-0 { animation-delay: 0.55s; }
+    .hl-1 { animation-delay: 0.72s; }
+    .hl-2 { animation-delay: 0.89s; }
+    .hl-3 { animation-delay: 1.06s; }
+    @keyframes letterSlide {
+      from { transform: translateX(-55px); opacity: 0; }
+      to   { transform: translateX(0);     opacity: 1; }
+    }
+  </style>
 </head>
 <body>
 <div class="pres">
@@ -24,7 +56,12 @@
       <div class="slide-inner">
 
         <div class="slide-num">01 / 10 &nbsp;·&nbsp; 타이틀</div>
-        <div class="hero-name">Roo<span class="hero-accent">.</span></div>
+        <div class="hero-anim-wrap">
+          <div class="hero-ball"></div>
+          <div class="hero-name">
+            <span class="hl hl-0">R</span><span class="hl hl-1">o</span><span class="hl hl-2">o</span><span class="hero-accent hl hl-3">.</span>
+          </div>
+        </div>
         <div class="hero-subtitle">ROO와 함께 일하는 새로운 방법 — 코딩 에이전트 Roo 소개</div>
 
         <p class="hero-desc hero-desc-1" onclick="revealHero()">
