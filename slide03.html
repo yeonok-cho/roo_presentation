@@ -5,6 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Roo — 서비스 비교</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .tab-bar {
+      display: flex; margin-bottom: 16px;
+      border-bottom: 2px solid var(--border);
+    }
+    .tab-btn {
+      padding: 9px 20px; font-size: .82rem; font-weight: 700;
+      border: none; background: none; cursor: pointer; font-family: inherit;
+      color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -2px;
+      transition: color .15s, border-color .15s, background .15s;
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    }
+    .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+    .tab-btn:hover:not(.active) { color: var(--text); background: var(--soft); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .tool-pill {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .72rem; font-weight: 700; padding: 2px 8px; border-radius: 99px;
+    }
+    .tool-yes  { background: var(--green-bg); color: var(--green); }
+    .tool-no   { background: var(--red-bg);   color: var(--red); }
+    .tool-part { background: var(--soft); color: var(--muted); border: 1px solid var(--border); }
+  </style>
 </head>
 <body>
 <div class="pres">
@@ -24,76 +48,206 @@
       <div class="slide-inner">
 
         <div class="slide-num">03 / 10 &nbsp;·&nbsp; 서비스 비교</div>
-        <h1 class="slide-title">LLM, 어떤 서비스로 쓸 수 있나요?</h1>
-        <p class="slide-sub">우리가 이미 쓰고 있는 AI 서비스들과 Roo의 차이</p>
+        <h1 class="slide-title">LLM, 어떻게 활용하나요?</h1>
+        <p class="slide-sub">채팅 서비스 → Tool Calling → 코드 에이전트 순으로 AI의 역할이 확장됩니다.</p>
 
-        <div class="tbl-wrap" style="margin-bottom:14px;">
-          <table class="cmp-table">
-            <thead>
-              <tr>
-                <th>항목</th>
-                <th>ChatGPT</th>
-                <th>Claude</th>
-                <th>Gemini</th>
-                <th class="roo-col">🤖 Roo</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>만든 곳</td>
-                <td>OpenAI</td>
-                <td>Anthropic</td>
-                <td>Google</td>
-                <td class="roo-col">오픈소스 커뮤니티</td>
-              </tr>
-              <tr>
-                <td>사용 모델</td>
-                <td>GPT-4o 등</td>
-                <td>Claude 3.5 등</td>
-                <td>Gemini 1.5 등</td>
-                <td class="roo-col">선택 가능 (Claude, GPT 등)</td>
-              </tr>
-              <tr>
-                <td>무료 플랜</td>
-                <td><span class="pill pill-green">✓ 있음</span></td>
-                <td><span class="pill pill-green">✓ 있음</span></td>
-                <td><span class="pill pill-green">✓ 있음</span></td>
-                <td class="roo-col"><span class="pill pill-green">✓ 있음</span></td>
-              </tr>
-              <tr>
-                <td>유료 구독료</td>
-                <td>$20/월 (Plus)</td>
-                <td>$20/월 (Pro)</td>
-                <td>$19.99/월</td>
-                <td class="roo-col">API 비용만 (종량제)</td>
-              </tr>
-              <tr>
-                <td>사용 환경</td>
-                <td>웹 브라우저</td>
-                <td>웹 브라우저</td>
-                <td>웹 브라우저</td>
-                <td class="roo-col">VS Code (내 PC)</td>
-              </tr>
-              <tr>
-                <td>파일 직접 수정</td>
-                <td><span class="pill pill-red">✗</span></td>
-                <td><span class="pill pill-red">✗</span></td>
-                <td><span class="pill pill-red">✗</span></td>
-                <td class="roo-col"><span class="pill pill-green">✓</span></td>
-              </tr>
-              <tr>
-                <td>터미널 실행</td>
-                <td><span class="pill pill-red">✗</span></td>
-                <td><span class="pill pill-red">✗</span></td>
-                <td><span class="pill pill-red">✗</span></td>
-                <td class="roo-col"><span class="pill pill-green">✓</span></td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- 탭 바 -->
+        <div class="tab-bar">
+          <button class="tab-btn active" onclick="switchTab(this,'tab1')">💬 LLM 채팅 서비스</button>
+          <button class="tab-btn"        onclick="switchTab(this,'tab2')">🔧 Tool Calling</button>
+          <button class="tab-btn"        onclick="switchTab(this,'tab3')">💻 코드 에이전트</button>
         </div>
 
-        <div class="highlight-box">
-          💡 LLM은 이미 우리 모두가 쓰고 있습니다. 이제 중요한 건 <strong>어떻게 더 잘 쓰느냐</strong>입니다.
+        <!-- ── 탭 1: LLM 채팅 서비스 ── -->
+        <div class="tab-panel active" id="tab1">
+          <div class="tbl-wrap">
+            <table class="cmp-table">
+              <thead>
+                <tr>
+                  <th>항목</th>
+                  <th>ChatGPT</th>
+                  <th>Claude</th>
+                  <th>Gemini</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>만든 곳</td>
+                  <td>OpenAI</td>
+                  <td>Anthropic</td>
+                  <td>Google</td>
+                </tr>
+                <tr>
+                  <td>대표 모델</td>
+                  <td>GPT-4o</td>
+                  <td>Claude 3.7 Sonnet</td>
+                  <td>Gemini 2.0 Flash</td>
+                </tr>
+                <tr>
+                  <td>무료 플랜</td>
+                  <td><span class="pill pill-green">✓ 있음</span></td>
+                  <td><span class="pill pill-green">✓ 있음</span></td>
+                  <td><span class="pill pill-green">✓ 있음</span></td>
+                </tr>
+                <tr>
+                  <td>유료 구독</td>
+                  <td>$20 / 월</td>
+                  <td>$20 / 월</td>
+                  <td>$19.99 / 월</td>
+                </tr>
+                <tr>
+                  <td>사용 환경</td>
+                  <td>웹 · 앱</td>
+                  <td>웹 · 앱</td>
+                  <td>웹 · 앱</td>
+                </tr>
+                <tr>
+                  <td>강점</td>
+                  <td>범용 · 생태계</td>
+                  <td>긴 문서 · 코딩</td>
+                  <td>Google 서비스 연동</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="highlight-box" style="margin-top:12px;">
+            💡 세 서비스 모두 웹 브라우저에서 대화하는 방식으로, 파일을 직접 수정하거나 터미널을 실행하지는 못합니다.
+          </div>
+        </div>
+
+        <!-- ── 탭 2: Tool Calling ── -->
+        <div class="tab-panel" id="tab2">
+          <div class="tbl-wrap">
+            <table class="cmp-table">
+              <thead>
+                <tr>
+                  <th>기능</th>
+                  <th>ChatGPT</th>
+                  <th>Claude</th>
+                  <th>Gemini</th>
+                  <th>Perplexity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>웹 검색</td>
+                  <td><span class="tool-pill tool-yes">✓</span></td>
+                  <td><span class="tool-pill tool-yes">✓</span></td>
+                  <td><span class="tool-pill tool-yes">✓</span></td>
+                  <td><span class="tool-pill tool-yes">✓ 특화</span></td>
+                </tr>
+                <tr>
+                  <td>코드 실행</td>
+                  <td><span class="tool-pill tool-yes">✓</span></td>
+                  <td><span class="tool-pill tool-yes">✓</span></td>
+                  <td><span class="tool-pill tool-yes">✓</span></td>
+                  <td><span class="tool-pill tool-no">✗</span></td>
+                </tr>
+                <tr>
+                  <td>이미지 생성</td>
+                  <td><span class="tool-pill tool-yes">✓ DALL-E</span></td>
+                  <td><span class="tool-pill tool-no">✗</span></td>
+                  <td><span class="tool-pill tool-yes">✓ Imagen</span></td>
+                  <td><span class="tool-pill tool-no">✗</span></td>
+                </tr>
+                <tr>
+                  <td>파일 분석</td>
+                  <td><span class="tool-pill tool-yes">✓</span></td>
+                  <td><span class="tool-pill tool-yes">✓</span></td>
+                  <td><span class="tool-pill tool-yes">✓</span></td>
+                  <td><span class="tool-pill tool-part">제한적</span></td>
+                </tr>
+                <tr>
+                  <td>외부 API 연동</td>
+                  <td><span class="tool-pill tool-yes">✓ GPTs</span></td>
+                  <td><span class="tool-pill tool-yes">✓ MCP</span></td>
+                  <td><span class="tool-pill tool-yes">✓ Extensions</span></td>
+                  <td><span class="tool-pill tool-no">✗</span></td>
+                </tr>
+                <tr>
+                  <td>컴퓨터 제어</td>
+                  <td><span class="tool-pill tool-part">제한적</span></td>
+                  <td><span class="tool-pill tool-yes">✓ Computer Use</span></td>
+                  <td><span class="tool-pill tool-no">✗</span></td>
+                  <td><span class="tool-pill tool-no">✗</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="highlight-box" style="margin-top:12px;">
+            💡 <strong>Tool Calling</strong>이란 LLM이 대화 중에 외부 도구(검색·코드 실행·API 등)를 직접 호출하는 기능입니다. 단순 대화를 넘어 실제 작업을 수행할 수 있게 됩니다.
+          </div>
+        </div>
+
+        <!-- ── 탭 3: 코드 에이전트 ── -->
+        <div class="tab-panel" id="tab3">
+          <div class="tbl-wrap">
+            <table class="cmp-table">
+              <thead>
+                <tr>
+                  <th>항목</th>
+                  <th class="roo-col">🤖 Roo</th>
+                  <th>Cursor</th>
+                  <th>GitHub Copilot</th>
+                  <th>Windsurf</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>기반 IDE</td>
+                  <td class="roo-col">VS Code</td>
+                  <td>자체 에디터</td>
+                  <td>모든 IDE</td>
+                  <td>자체 에디터</td>
+                </tr>
+                <tr>
+                  <td>사용 모델</td>
+                  <td class="roo-col">선택 가능</td>
+                  <td>Claude · GPT</td>
+                  <td>GPT-4o</td>
+                  <td>Claude · GPT</td>
+                </tr>
+                <tr>
+                  <td>파일 직접 수정</td>
+                  <td class="roo-col"><span class="pill pill-green">✓</span></td>
+                  <td><span class="pill pill-green">✓</span></td>
+                  <td><span class="pill pill-muted">제한적</span></td>
+                  <td><span class="pill pill-green">✓</span></td>
+                </tr>
+                <tr>
+                  <td>터미널 실행</td>
+                  <td class="roo-col"><span class="pill pill-green">✓</span></td>
+                  <td><span class="pill pill-green">✓</span></td>
+                  <td><span class="pill pill-red">✗</span></td>
+                  <td><span class="pill pill-green">✓</span></td>
+                </tr>
+                <tr>
+                  <td>멀티파일 작업</td>
+                  <td class="roo-col"><span class="pill pill-green">✓</span></td>
+                  <td><span class="pill pill-green">✓</span></td>
+                  <td><span class="pill pill-muted">제한적</span></td>
+                  <td><span class="pill pill-green">✓</span></td>
+                </tr>
+                <tr>
+                  <td>비용</td>
+                  <td class="roo-col"><strong>사내 API</strong></td>
+                  <td>$20 / 월</td>
+                  <td>$10 / 월</td>
+                  <td>$15 / 월</td>
+                </tr>
+                <tr>
+                  <td>오픈소스</td>
+                  <td class="roo-col"><span class="pill pill-green">✓</span></td>
+                  <td><span class="pill pill-red">✗</span></td>
+                  <td><span class="pill pill-red">✗</span></td>
+                  <td><span class="pill pill-red">✗</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="highlight-box" style="margin-top:12px;">
+            💡 <strong>코드 에이전트</strong>는 단순 코드 제안을 넘어 파일 수정·터미널 실행·디버깅까지 자율적으로 처리합니다. Roo는 사내 API로 비용 없이 사용 가능합니다.
+          </div>
         </div>
 
       </div>
@@ -104,5 +258,13 @@
 </div>
 <script>const SLIDE = 3; const TOTAL = 10;</script>
 <script src="nav.js"></script>
+<script>
+function switchTab(btn, panelId) {
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+</script>
 </body>
 </html>
