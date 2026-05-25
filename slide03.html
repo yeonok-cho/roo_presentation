@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roo — 서비스 비교</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="pres">
+  <header class="topbar">
+    <div class="topbar-brand"><div class="brand-dot">R</div> Roo 소개</div>
+    <div class="topbar-progress-wrap">
+      <div class="progress-label"><span id="cur"></span> / 10</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog"></div></div>
+    </div>
+    <div class="topbar-nav">
+      <button class="nav-btn" id="prevBtn" onclick="goPrev()">&#8592;</button>
+      <button class="nav-btn" id="nextBtn" onclick="goNext()">&#8594;</button>
+    </div>
+  </header>
+  <div class="slides-viewport">
+    <div class="slide">
+      <div class="slide-inner">
+
+        <div class="slide-num">03 / 10 &nbsp;·&nbsp; 서비스 비교</div>
+        <h1 class="slide-title">LLM, 어떤 서비스로 쓸 수 있나요?</h1>
+        <p class="slide-sub">우리가 이미 쓰고 있는 AI 서비스들과 Roo의 차이</p>
+
+        <div class="tbl-wrap" style="margin-bottom:14px;">
+          <table class="cmp-table">
+            <thead>
+              <tr>
+                <th>항목</th>
+                <th>ChatGPT</th>
+                <th>Claude</th>
+                <th>Gemini</th>
+                <th class="roo-col">🤖 Roo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>만든 곳</td>
+                <td>OpenAI</td>
+                <td>Anthropic</td>
+                <td>Google</td>
+                <td class="roo-col">오픈소스 커뮤니티</td>
+              </tr>
+              <tr>
+                <td>사용 모델</td>
+                <td>GPT-4o 등</td>
+                <td>Claude 3.5 등</td>
+                <td>Gemini 1.5 등</td>
+                <td class="roo-col">선택 가능 (Claude, GPT 등)</td>
+              </tr>
+              <tr>
+                <td>무료 플랜</td>
+                <td><span class="pill pill-green">✓ 있음</span></td>
+                <td><span class="pill pill-green">✓ 있음</span></td>
+                <td><span class="pill pill-green">✓ 있음</span></td>
+                <td class="roo-col"><span class="pill pill-green">✓ 있음</span></td>
+              </tr>
+              <tr>
+                <td>유료 구독료</td>
+                <td>$20/월 (Plus)</td>
+                <td>$20/월 (Pro)</td>
+                <td>$19.99/월</td>
+                <td class="roo-col">API 비용만 (종량제)</td>
+              </tr>
+              <tr>
+                <td>사용 환경</td>
+                <td>웹 브라우저</td>
+                <td>웹 브라우저</td>
+                <td>웹 브라우저</td>
+                <td class="roo-col">VS Code (내 PC)</td>
+              </tr>
+              <tr>
+                <td>파일 직접 수정</td>
+                <td><span class="pill pill-red">✗</span></td>
+                <td><span class="pill pill-red">✗</span></td>
+                <td><span class="pill pill-red">✗</span></td>
+                <td class="roo-col"><span class="pill pill-green">✓</span></td>
+              </tr>
+              <tr>
+                <td>터미널 실행</td>
+                <td><span class="pill pill-red">✗</span></td>
+                <td><span class="pill pill-red">✗</span></td>
+                <td><span class="pill pill-red">✗</span></td>
+                <td class="roo-col"><span class="pill pill-green">✓</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="highlight-box">
+          💡 LLM은 이미 우리 모두가 쓰고 있습니다. 이제 중요한 건 <strong>어떻게 더 잘 쓰느냐</strong>입니다.
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <footer class="bottombar" id="dots"></footer>
+  <button class="paw-btn" id="pawBtn" onclick="goto(1)" title="처음으로 ↩">🐾</button>
+</div>
+<script>const SLIDE = 3; const TOTAL = 10;</script>
+<script src="nav.js"></script>
+</body>
+</html>

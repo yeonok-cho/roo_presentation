@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roo — 시나리오</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="pres">
+  <header class="topbar">
+    <div class="topbar-brand"><div class="brand-dot">R</div> Roo 소개</div>
+    <div class="topbar-progress-wrap">
+      <div class="progress-label"><span id="cur"></span> / 10</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog"></div></div>
+    </div>
+    <div class="topbar-nav">
+      <button class="nav-btn" id="prevBtn" onclick="goPrev()">&#8592;</button>
+      <button class="nav-btn" id="nextBtn" onclick="goNext()">&#8594;</button>
+    </div>
+  </header>
+  <div class="slides-viewport">
+    <div class="slide">
+      <div class="slide-inner">
+
+        <div class="slide-num">09 / 10 &nbsp;·&nbsp; 시나리오</div>
+        <h1 class="slide-title">이런 상황에서 써보세요</h1>
+        <p class="slide-sub">실제 업무 시나리오별 활용법입니다.</p>
+
+        <div class="scenario-list">
+          <div class="scenario">
+            <div class="scenario-head">
+              <div class="scenario-icon">📊</div>
+              <div class="scenario-label">시나리오 A — 데이터 분석가</div>
+            </div>
+            <div class="scenario-quote">"이 CSV 파일 읽어서 월별 매출 합계 뽑는 코드 만들어줘"</div>
+            <div class="scenario-body">pandas를 모르더라도 요청만 하면 코드를 작성하고 실행까지 합니다. 결과 확인 후 "그래프도 그려줘"로 이어가면 됩니다.</div>
+            <div class="time-badge">
+              <span class="time-before">기존: 구글 검색 + 스택오버플로우 30분</span>
+              <span class="time-arrow">→</span>
+              <span class="time-after">Roo: 3분</span>
+            </div>
+          </div>
+
+          <div class="scenario">
+            <div class="scenario-head">
+              <div class="scenario-icon">📝</div>
+              <div class="scenario-label">시나리오 B — 문서 자동 작성</div>
+            </div>
+            <div class="scenario-quote">"이 함수들 보고 API 명세서 마크다운으로 만들어줘"</div>
+            <div class="scenario-body">코드 파일을 직접 읽고 함수 설명, 파라미터, 반환값을 자동으로 문서화합니다.</div>
+            <div class="time-badge">
+              <span class="time-before">기존: 수작업 2시간</span>
+              <span class="time-arrow">→</span>
+              <span class="time-after">Roo: 10분</span>
+            </div>
+          </div>
+
+          <div class="scenario">
+            <div class="scenario-head">
+              <div class="scenario-icon">🐛</div>
+              <div class="scenario-label">시나리오 C — 디버깅</div>
+            </div>
+            <div class="scenario-quote">"테스트 돌렸더니 이 오류 났어. 원인 찾아서 고쳐줘"</div>
+            <div class="scenario-body">오류 메시지를 붙여넣으면 관련 파일을 전부 뒤져 원인을 찾고 수정합니다. 터미널에서 테스트 재실행까지 자동으로 합니다.</div>
+            <div class="time-badge">
+              <span class="time-before">기존: 원인 파악 1시간</span>
+              <span class="time-arrow">→</span>
+              <span class="time-after">Roo: 10~15분</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <footer class="bottombar" id="dots"></footer>
+  <button class="paw-btn" id="pawBtn" onclick="goto(1)" title="처음으로 ↩">🐾</button>
+</div>
+<script>const SLIDE = 9; const TOTAL = 10;</script>
+<script src="nav.js"></script>
+</body>
+</html>

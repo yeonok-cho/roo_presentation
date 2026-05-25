@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roo — 핵심 정리</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="pres">
+  <header class="topbar">
+    <div class="topbar-brand"><div class="brand-dot">R</div> Roo 소개</div>
+    <div class="topbar-progress-wrap">
+      <div class="progress-label"><span id="cur"></span> / 10</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog"></div></div>
+    </div>
+    <div class="topbar-nav">
+      <button class="nav-btn" id="prevBtn" onclick="goPrev()">&#8592;</button>
+      <button class="nav-btn" id="nextBtn" onclick="goNext()">&#8594;</button>
+    </div>
+  </header>
+  <div class="slides-viewport">
+    <div class="slide">
+      <div class="slide-inner">
+
+        <div class="slide-num">10 / 10 &nbsp;·&nbsp; 정리</div>
+        <h1 class="slide-title">핵심 3단어: 대화 → 실행 → 완성</h1>
+
+        <div class="checklist">
+          <div class="check-item"><div class="check-icon">✓</div><div class="check-text">LLM은 이미 우리 모두가 쓰는 기술입니다</div></div>
+          <div class="check-item"><div class="check-icon">✓</div><div class="check-text">ChatGPT·Claude는 대화 도구, Roo는 행동 도구입니다</div></div>
+          <div class="check-item"><div class="check-icon">✓</div><div class="check-text">파일 복붙 없이 프로젝트 전체를 직접 수정합니다</div></div>
+          <div class="check-item"><div class="check-icon">✓</div><div class="check-text">Approve 전엔 아무것도 바뀌지 않아 안전합니다</div></div>
+          <div class="check-item"><div class="check-icon">✓</div><div class="check-text">사내 API로 비용 걱정 없이 바로 시작할 수 있습니다</div></div>
+        </div>
+
+        <div class="card-label" style="margin-bottom:8px;">교육 로드맵</div>
+        <div class="tbl-wrap" style="margin-bottom:16px;">
+          <table class="roadmap-table">
+            <thead>
+              <tr><th></th><th>대상</th><th>내용</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1일차</td>
+                <td>전체 팀</td>
+                <td>LLM 개념 + Roo 설치 + 기본 사용법 실습</td>
+              </tr>
+              <tr>
+                <td>2일차</td>
+                <td>희망자</td>
+                <td>실제 프로젝트에 Roo 적용 + 커스텀 모드 구성</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card-label" style="margin-bottom:8px;">참고 자료</div>
+        <div class="ref-row">
+          <div class="ref-item">📄 <strong>공식 문서:</strong> <span style="color:var(--muted);font-style:italic;">URL 추가 예정</span></div>
+          <div class="ref-item">🏢 <strong>사내 설치 가이드:</strong> <span style="color:var(--muted);font-style:italic;">URL 추가 예정</span></div>
+          <div class="ref-item">🔑 <strong>API 키 발급:</strong> <span class="kbd">go/ums</span></div>
+        </div>
+
+        <div class="cta-box">
+          <div class="cta-main">🚀 지금 바로 설치하고, 팀원에게 소개해보세요.</div>
+          <div class="cta-sub">Extensions 탭 → "Roo Code" 검색 → Install — 10분이면 시작할 수 있습니다</div>
+        </div>
+        <div class="qa-box">궁금한 점은 자유롭게 질문해 주세요.</div>
+
+      </div>
+    </div>
+  </div>
+  <footer class="bottombar" id="dots"></footer>
+  <button class="paw-btn" id="pawBtn" onclick="goto(1)" title="처음으로 ↩">🐾</button>
+</div>
+<script>const SLIDE = 10; const TOTAL = 10;</script>
+<script src="nav.js"></script>
+</body>
+</html>
