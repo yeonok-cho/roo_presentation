@@ -33,8 +33,10 @@
             <div>
               <div class="col-card-title">어떻게 만들어졌나 — 수백억 개의 글을 읽다</div>
               <div class="col-card-desc">
-                인터넷의 방대한 텍스트(책, 코드, 뉴스, 논문 등)를 읽고, "다음에 올 단어가 뭘지" 반복 학습한 모델입니다.
-                사람이 글을 읽고 패턴을 익히는 것과 비슷하지만, 규모가 수천 배 큽니다.
+                방대한 텍스트(책, 코드, 뉴스, 논문 등)를 학습하며, 
+                문장 속 다음 단어를 예측하는 과정을 수조 번 반복합니다.
+                사람이 독서를 통해 지식을 익히는 것과 비슷하지만, 
+                LLM은 인간이 평생 읽기 어려운 규모의 데이터를 학습합니다.
               </div>
             </div>
           </div>
@@ -44,7 +46,7 @@
               <div class="col-card-title">어떻게 동작하나 — 문맥을 이해해서 답한다</div>
               <div class="col-card-desc">
                 질문을 입력하면 → 학습한 패턴을 바탕으로 → 가장 자연스러운 답을 단어 하나씩 생성합니다.
-                계산기처럼 정해진 공식이 아니라, 문맥을 이해해서 대답합니다.
+                계산기처럼 정해진 공식이 아니라, 문맥을 이해하여 확률적으로 가장 적절한 문장을 만들어냅니다.
               </div>
             </div>
           </div>
@@ -53,16 +55,17 @@
             <div>
               <div class="col-card-title">한계도 있다 — 완벽하지 않습니다</div>
               <div class="limit-list">
-                <div class="limit-item">학습 데이터 이후의 사실은 모름 (지식 컷오프)</div>
-                <div class="limit-item">가끔 틀린 정보를 자신 있게 말함 (할루시네이션)</div>
-                <div class="limit-item">기본적으로 "대화"만 가능 → 파일을 직접 바꾸진 못함</div>
+                <div class="limit-item">학습 데이터 이후의 사실은 모름 (Knowledge Cutoff)</div>
+                <div class="limit-item">가끔 틀린 정보를 자신 있게 말함 (Hallucination)</div>
+                <div class="limit-item">기본적으로 "대화"만 가능 → 실제 업무 실행은 제한적</div>
+                <div class="limit-item">따라서 최근에는 Agent, Tool Calling, Code Agent 기술과 결합되는 추세</div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="highlight-box">
-          💡 <strong>핵심 한 줄:</strong> LLM은 엄청나게 많은 글을 읽고 자란 "텍스트 전문가"입니다.
+          💡 <strong>한 줄 요약:</strong> LLM은 엄청나게 많은 글을 읽고 자란 "텍스트 전문가"입니다.
         </div>
 
       </div>
