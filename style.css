@@ -29,7 +29,7 @@
 
 html, body {
   height: 100%;
-  font-size: 18px;
+  font-size: 19px;
   font-family: 'Noto Serif KR', serif;
   background: var(--bg);
   color: var(--text);
@@ -89,7 +89,7 @@ html, body {
   letter-spacing: .05em; text-transform: uppercase;
 }
 .slide-title {
-  font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 800;
+  font-size: clamp(27px, 3.5vw, 40px); font-weight: 800;
   letter-spacing: -.04em; line-height: 1.15; color: var(--text); margin-bottom: 6px;
 }
 .slide-sub { font-size: clamp(.85rem, 1.8vw, .98rem); color: var(--muted); line-height: 1.6; margin-bottom: 28px; }
