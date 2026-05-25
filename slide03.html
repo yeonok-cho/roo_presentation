@@ -6,8 +6,9 @@
   <title>Roo — 서비스 비교</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    /* 탭 */
     .tab-bar {
-      display: flex; margin-bottom: 16px;
+      display: flex; margin-bottom: 14px;
       border-bottom: 2px solid var(--border);
     }
     .tab-btn {
@@ -21,6 +22,19 @@
     .tab-btn:hover:not(.active) { color: var(--text); background: var(--soft); }
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
+
+    /* 테이블 — 모든 열 균등 너비 + 1열 강조 */
+    .tab-panel .cmp-table { table-layout: fixed; width: 100%; }
+    .tab-panel .cmp-table th,
+    .tab-panel .cmp-table td { width: auto; white-space: normal; }
+    .tab-panel .cmp-table td:first-child {
+      color: var(--primary); font-weight: 800;
+      white-space: normal; width: auto;
+      font-size: .78rem; letter-spacing: -.01em;
+    }
+    .tab-panel .cmp-table th:first-child { width: auto; }
+
+    /* tool pill */
     .tool-pill {
       display: inline-flex; align-items: center; gap: 4px;
       font-size: .72rem; font-weight: 700; padding: 2px 8px; border-radius: 99px;
@@ -28,6 +42,22 @@
     .tool-yes  { background: var(--green-bg); color: var(--green); }
     .tool-no   { background: var(--red-bg);   color: var(--red); }
     .tool-part { background: var(--soft); color: var(--muted); border: 1px solid var(--border); }
+
+    /* 개념 흐름 배너 */
+    .concept-flow {
+      display: flex; align-items: center; gap: 6px;
+      margin-bottom: 12px; font-size: .78rem; flex-wrap: wrap;
+    }
+    .cf-step {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 5px 12px;
+      font-weight: 700; color: var(--muted);
+    }
+    .cf-step.cf-active {
+      background: var(--primary-bg); border-color: var(--primary-br);
+      color: var(--primary);
+    }
+    .cf-arrow { color: var(--border); font-size: .9rem; font-weight: 700; }
   </style>
 </head>
 <body>
@@ -48,8 +78,8 @@
       <div class="slide-inner">
 
         <div class="slide-num">03 / 10 &nbsp;·&nbsp; 서비스 비교</div>
-        <h1 class="slide-title">LLM, 어떻게 활용하나요?</h1>
-        <p class="slide-sub">채팅 서비스 → Tool Calling → 코드 에이전트 순으로 AI의 역할이 확장됩니다.</p>
+        <h1 class="slide-title">AI, 어디까지 시킬 수 있나요?</h1>
+        <p class="slide-sub">채팅 → 도구 사용 → 자율 실행, 세 단계로 AI의 역할이 확장됩니다.</p>
 
         <!-- 탭 바 -->
         <div class="tab-bar">
@@ -60,6 +90,13 @@
 
         <!-- ── 탭 1: LLM 채팅 서비스 ── -->
         <div class="tab-panel active" id="tab1">
+          <div class="concept-flow">
+            <div class="cf-step cf-active">💬 LLM 채팅 — 지금 여기</div>
+            <div class="cf-arrow">→</div>
+            <div class="cf-step">🔧 Tool Calling</div>
+            <div class="cf-arrow">→</div>
+            <div class="cf-step">💻 코드 에이전트</div>
+          </div>
           <div class="tbl-wrap">
             <table class="cmp-table">
               <thead>
@@ -68,6 +105,7 @@
                   <th>ChatGPT</th>
                   <th>Claude</th>
                   <th>Gemini</th>
+                  <th>Perplexity</th>
                 </tr>
               </thead>
               <tbody>
@@ -76,15 +114,18 @@
                   <td>OpenAI</td>
                   <td>Anthropic</td>
                   <td>Google</td>
+                  <td>Perplexity AI</td>
                 </tr>
                 <tr>
                   <td>대표 모델</td>
                   <td>GPT-4o</td>
-                  <td>Claude 3.7 Sonnet</td>
-                  <td>Gemini 2.0 Flash</td>
+                  <td>Claude 3.7</td>
+                  <td>Gemini 2.0</td>
+                  <td>Sonar (자체)</td>
                 </tr>
                 <tr>
                   <td>무료 플랜</td>
+                  <td><span class="pill pill-green">✓ 있음</span></td>
                   <td><span class="pill pill-green">✓ 있음</span></td>
                   <td><span class="pill pill-green">✓ 있음</span></td>
                   <td><span class="pill pill-green">✓ 있음</span></td>
@@ -94,9 +135,11 @@
                   <td>$20 / 월</td>
                   <td>$20 / 월</td>
                   <td>$19.99 / 월</td>
+                  <td>$20 / 월</td>
                 </tr>
                 <tr>
                   <td>사용 환경</td>
+                  <td>웹 · 앱</td>
                   <td>웹 · 앱</td>
                   <td>웹 · 앱</td>
                   <td>웹 · 앱</td>
@@ -105,18 +148,26 @@
                   <td>강점</td>
                   <td>범용 · 생태계</td>
                   <td>긴 문서 · 코딩</td>
-                  <td>Google 서비스 연동</td>
+                  <td>Google 연동</td>
+                  <td>실시간 웹 검색</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="highlight-box" style="margin-top:12px;">
-            💡 세 서비스 모두 웹 브라우저에서 대화하는 방식으로, 파일을 직접 수정하거나 터미널을 실행하지는 못합니다.
+            💡 모두 <strong>웹 브라우저에서 대화</strong>하는 방식입니다. 답은 줄 수 있지만, 내 파일을 직접 열거나 터미널을 실행하지는 못합니다.
           </div>
         </div>
 
         <!-- ── 탭 2: Tool Calling ── -->
         <div class="tab-panel" id="tab2">
+          <div class="concept-flow">
+            <div class="cf-step">💬 LLM 채팅</div>
+            <div class="cf-arrow">→</div>
+            <div class="cf-step cf-active">🔧 Tool Calling — 지금 여기</div>
+            <div class="cf-arrow">→</div>
+            <div class="cf-step">💻 코드 에이전트</div>
+          </div>
           <div class="tbl-wrap">
             <table class="cmp-table">
               <thead>
@@ -175,12 +226,19 @@
             </table>
           </div>
           <div class="highlight-box" style="margin-top:12px;">
-            💡 <strong>Tool Calling</strong>이란 LLM이 대화 중에 외부 도구(검색·코드 실행·API 등)를 직접 호출하는 기능입니다. 단순 대화를 넘어 실제 작업을 수행할 수 있게 됩니다.
+            💡 <strong>Tool Calling</strong> = AI가 도구를 <strong>한 번씩</strong> 호출하는 단위 행동입니다. "웹 검색해줘" → 검색 결과 반환처럼, 요청 1개에 도구 1번 사용이 기본입니다.
           </div>
         </div>
 
         <!-- ── 탭 3: 코드 에이전트 ── -->
         <div class="tab-panel" id="tab3">
+          <div class="concept-flow">
+            <div class="cf-step">💬 LLM 채팅</div>
+            <div class="cf-arrow">→</div>
+            <div class="cf-step">🔧 Tool Calling</div>
+            <div class="cf-arrow">→</div>
+            <div class="cf-step cf-active">💻 코드 에이전트 — 지금 여기</div>
+          </div>
           <div class="tbl-wrap">
             <table class="cmp-table">
               <thead>
@@ -246,7 +304,7 @@
             </table>
           </div>
           <div class="highlight-box" style="margin-top:12px;">
-            💡 <strong>코드 에이전트</strong>는 단순 코드 제안을 넘어 파일 수정·터미널 실행·디버깅까지 자율적으로 처리합니다. Roo는 사내 API로 비용 없이 사용 가능합니다.
+            💡 <strong>코드 에이전트</strong> = Tool Calling을 <strong>목표가 달성될 때까지 스스로 반복</strong>합니다. 파일 읽기 → 수정 → 실행 → 오류 확인 → 재수정을 사람 개입 없이 이어서 처리합니다.
           </div>
         </div>
 
