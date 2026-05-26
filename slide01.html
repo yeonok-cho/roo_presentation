@@ -16,16 +16,26 @@
       to   { transform: translateX(0);     opacity: 1; }
     }
 
-    /* 주황 점(.) 왼쪽에서 굴러서 등장 */
+    /* 주황 점(.) 왼쪽에서 굴러서 통통통 세 번 튀고 착지 */
     .hl-dot {
       display: inline-block;
-      animation: dotRoll 0.75s cubic-bezier(.3,0,.2,1) both;
+      animation: dotBounce 1.6s linear both;
       animation-delay: 0.68s;
     }
-    @keyframes dotRoll {
-      from { transform: translateX(-420px) rotate(-720deg); opacity: 0; }
-      60%  { opacity: 1; }
-      to   { transform: translateX(0) rotate(0deg); opacity: 1; }
+    @keyframes dotBounce {
+      0%   { transform: translateX(-420px) rotate(-720deg); opacity: 0; animation-timing-function: ease-out; }
+      30%  { opacity: 1; }
+      42%  { transform: translateX(0) translateY(0); opacity: 1; animation-timing-function: ease-out; }
+      /* 통 1 */
+      52%  { transform: translateX(0) translateY(-30px); animation-timing-function: ease-in; }
+      61%  { transform: translateX(0) translateY(0);     animation-timing-function: ease-out; }
+      /* 통 2 */
+      69%  { transform: translateX(0) translateY(-18px); animation-timing-function: ease-in; }
+      77%  { transform: translateX(0) translateY(0);     animation-timing-function: ease-out; }
+      /* 통 3 */
+      84%  { transform: translateX(0) translateY(-8px);  animation-timing-function: ease-in; }
+      91%  { transform: translateX(0) translateY(0); }
+      100% { transform: translateX(0) translateY(0); }
     }
   </style>
 </head>
