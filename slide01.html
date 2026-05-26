@@ -146,14 +146,15 @@ window.addEventListener('load', function () {
   var xP2 = (xO1 + xO2) / 2;
   var xP3 = (xO2 + 0  ) / 2;
 
-  // 등속 기준 타이밍 (offset 0~1)
+  // 전체 이동을 LAND 지점(72%)까지 완료 → 나머지에 추가 바운스
+  var LAND = 0.72;
   var span = -startX;
-  var tR   = (xR   - startX) / span;
-  var tP1  = (xP1  - startX) / span;
-  var tO1  = (xO1  - startX) / span;
-  var tP2  = (xP2  - startX) / span;
-  var tO2  = (xO2  - startX) / span;
-  var tP3  = (xP3  - startX) / span;
+  var tR   = (xR   - startX) / span * LAND;
+  var tP1  = (xP1  - startX) / span * LAND;
+  var tO1  = (xO1  - startX) / span * LAND;
+  var tP2  = (xP2  - startX) / span * LAND;
+  var tO2  = (xO2  - startX) / span * LAND;
+  var tP3  = (xP3  - startX) / span * LAND;
 
   // ── Y 좌표: 글자 꼭대기보다 25px 더 낮게 착지 ──
   var sink = 25;
@@ -169,11 +170,12 @@ window.addEventListener('load', function () {
 
   var DUR = 3400, DEL = 1800;
 
-  // X 애니메이션: carrier에 등속 이동 (선형)
+  // X 애니메이션: LAND 지점까지 등속 이동, 이후 정지
   carrier.animate([
-    { transform: 'translateX(' + startX + 'px)' },
-    { transform: 'translateX(0px)' }
-  ], { duration: DUR, delay: DEL, fill: 'both', easing: 'linear' });
+    { transform: 'translateX(' + startX + 'px)', offset: 0,    easing: 'linear' },
+    { transform: 'translateX(0px)',               offset: LAND, easing: 'linear' },
+    { transform: 'translateX(0px)',               offset: 1 }
+  ], { duration: DUR, delay: DEL, fill: 'both' });
 
   // 공 줄무늬 회전 (굴러오는 시각 효과)
   var ball = dot.querySelector('.dot-ball');
@@ -194,6 +196,8 @@ window.addEventListener('load', function () {
     { transform: 'translateY(' + yP2 + 'px)', opacity: 1, offset: tP2, easing: 'ease-in'  },
     { transform: 'translateY(' + yO2 + 'px)', opacity: 1, offset: tO2, easing: 'ease-out' },
     { transform: 'translateY(' + yP3 + 'px)', opacity: 1, offset: tP3, easing: 'ease-in'  },
+    { transform: 'translateY(0px)',            opacity: 1, offset: LAND,  easing: 'ease-out' },
+    { transform: 'translateY(-26px)',          opacity: 1, offset: 0.86,  easing: 'ease-in'  },
     { transform: 'translateY(0px)',            opacity: 1, offset: 1 }
   ], { duration: DUR, delay: DEL, fill: 'both', easing: 'linear' });
 });
