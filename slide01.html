@@ -7,35 +7,37 @@
   <link rel="stylesheet" href="style.css">
   <style>
     /* R, o, o 각 글자 왼쪽에서 순차 등장 */
-    .hl { display: inline-block; animation: letterSlide 0.4s cubic-bezier(.4,0,.2,1) both; }
+    .hl { display: inline-block; animation: letterSlide 0.7s cubic-bezier(.4,0,.2,1) both; }
     .hl-0 { animation-delay: 0.1s; }
-    .hl-1 { animation-delay: 0.28s; }
-    .hl-2 { animation-delay: 0.46s; }
+    .hl-1 { animation-delay: 0.5s; }
+    .hl-2 { animation-delay: 0.9s; }
     @keyframes letterSlide {
       from { transform: translateX(-60px); opacity: 0; }
       to   { transform: translateX(0);     opacity: 1; }
     }
 
-    /* 주황 점(.) 왼쪽에서 굴러서 통통통 세 번 튀고 착지 */
+    /* 주황 점: 420px 구간을 균등 3등분해 튀면서 최종 위치에 착지 */
     .hl-dot {
       display: inline-block;
-      animation: dotBounce 1.6s linear both;
-      animation-delay: 0.68s;
+      animation: dotBounce 2.8s linear both;
+      animation-delay: 1.3s;
     }
     @keyframes dotBounce {
-      0%   { transform: translateX(-420px) rotate(-720deg); opacity: 0; animation-timing-function: ease-out; }
-      30%  { opacity: 1; }
-      42%  { transform: translateX(0) translateY(0); opacity: 1; animation-timing-function: ease-out; }
-      /* 통 1 */
-      52%  { transform: translateX(0) translateY(-30px); animation-timing-function: ease-in; }
-      61%  { transform: translateX(0) translateY(0);     animation-timing-function: ease-out; }
-      /* 통 2 */
-      69%  { transform: translateX(0) translateY(-18px); animation-timing-function: ease-in; }
-      77%  { transform: translateX(0) translateY(0);     animation-timing-function: ease-out; }
-      /* 통 3 */
-      84%  { transform: translateX(0) translateY(-8px);  animation-timing-function: ease-in; }
-      91%  { transform: translateX(0) translateY(0); }
-      100% { transform: translateX(0) translateY(0); }
+      0%    { transform: translateX(-420px) translateY(0) rotate(-540deg); opacity: 0; }
+      8%    { opacity: 1; }
+      /* 1번째 호 — 정점 */
+      16.5% { transform: translateX(-315px) translateY(-42px) rotate(-360deg); animation-timing-function: ease-in; }
+      /* 1번째 착지 */
+      33%   { transform: translateX(-210px) translateY(0)     rotate(-180deg); animation-timing-function: ease-out; }
+      /* 2번째 호 — 정점 */
+      49.5% { transform: translateX(-105px) translateY(-42px) rotate(-90deg);  animation-timing-function: ease-in; }
+      /* 2번째 착지 */
+      66%   { transform: translateX(-0px)   translateY(0)     rotate(0deg);    animation-timing-function: ease-out; }
+      /* 3번째 호 — 정점 (작게) */
+      79%   { transform: translateX(0)      translateY(-18px) rotate(0deg);    animation-timing-function: ease-in; }
+      /* 최종 착지 */
+      91%   { transform: translateX(0)      translateY(0)     rotate(0deg); }
+      100%  { transform: translateX(0)      translateY(0)     rotate(0deg); }
     }
   </style>
 </head>
