@@ -113,6 +113,18 @@
     .tab-pane { display: none; }
     .tab-pane.active { display: block; }
     .bh-copilot { background: #0078D4; }
+
+    /* ARR 탭 growth-list만 스크롤 (MAU 높이에 맞춤) */
+    #tab-arr .growth-list {
+      max-height: 268px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+    #tab-arr .growth-list::-webkit-scrollbar { width: 4px; }
+    #tab-arr .growth-list::-webkit-scrollbar-track { background: transparent; }
+    #tab-arr .growth-list::-webkit-scrollbar-thumb {
+      background: var(--border); border-radius: 2px;
+    }
   </style>
 </head>
 <body>
