@@ -181,17 +181,17 @@ window.addEventListener('load', function () {
 
   // Y: R·o·o 3번 착지 → "." 4번째 착지 → 안착 바운스
   dot.animate([
-    { transform: 'translateY(0px)',                opacity: 0, offset: 0,                      easing: 'linear'   },
-    { transform: 'translateY(0px)',                opacity: 1, offset: Math.min(tR*0.4, 0.05), easing: 'linear'   },
-    { transform: 'translateY(' + LY + 'px)',       opacity: 1, offset: tR,   easing: 'ease-out' }, // 1착 R
-    { transform: 'translateY(' + (B - 20) + 'px)',opacity: 1, offset: tP1,  easing: 'ease-in'  },
-    { transform: 'translateY(' + (LY - 20) + 'px)', opacity: 1, offset: tO1,  easing: 'ease-out' }, // 2착 o1
-    { transform: 'translateY(' + (B + LY) + 'px)',opacity: 1, offset: tP2,  easing: 'ease-in'  },
-    { transform: 'translateY(' + LY + 'px)',       opacity: 1, offset: tO2,  easing: 'ease-out' }, // 3착 o2
-    { transform: 'translateY(' + (B + LY) + 'px)',opacity: 1, offset: tP3,  easing: 'ease-in'  },
-    { transform: 'translateY(' + LY + 'px)',       opacity: 1, offset: LAND, easing: 'ease-out' }, // 4착 "."
+    { transform: 'translateY(0px)',          opacity: 0, offset: 0,                      easing: 'linear'   },
+    { transform: 'translateY(0px)',          opacity: 1, offset: Math.min(tR*0.4, 0.05), easing: 'linear'   },
+    { transform: 'translateY(' + LY + 'px)',opacity: 1, offset: tR,   easing: 'ease-out' }, // 1착 R
+    { transform: 'translateY(' + B + 'px)', opacity: 1, offset: tP1,  easing: 'ease-in'  },
+    { transform: 'translateY(' + LY + 'px)',opacity: 1, offset: tO1,  easing: 'ease-out' }, // 2착 o1
+    { transform: 'translateY(' + B + 'px)', opacity: 1, offset: tP2,  easing: 'ease-in'  },
+    { transform: 'translateY(' + LY + 'px)',opacity: 1, offset: tO2,  easing: 'ease-out' }, // 3착 o2
+    { transform: 'translateY(' + B + 'px)', opacity: 1, offset: tP3,  easing: 'ease-in'  },
+    { transform: 'translateY(' + LY + 'px)',opacity: 1, offset: LAND, easing: 'ease-out' }, // 4착 "."
     { transform: 'translateY(' + (LY - 22) + 'px)',opacity: 1, offset: 0.88, easing: 'ease-in'  }, // 안착 바운스
-    { transform: 'translateY(0px)',                opacity: 1, offset: 1 }
+    { transform: 'translateY(0px)',          opacity: 1, offset: 1 }
   ], { duration: DUR, delay: DEL, fill: 'both', easing: 'linear' });
 });
 </script>
