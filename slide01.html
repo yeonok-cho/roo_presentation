@@ -117,10 +117,10 @@ window.addEventListener('load', function () {
   var o2R = o2El.getBoundingClientRect();
 
   // ── X 좌표 (dot의 자연 위치 기준 상대값) ──
-  var startX = -(dR.left + 80);          // 화면 왼쪽 밖
-  var xR     = rR.left   - dR.left;      // R 왼쪽 끝
-  var xO1    = o1R.left  - dR.left;      // o1 왼쪽 끝
-  var xO2    = o2R.left  - dR.left;      // o2 왼쪽 끝
+  var startX = -(dR.left + 80);                              // 화면 왼쪽 밖
+  var xR     = rR.left  + rR.width  / 2 - dR.left;          // R 가로 정중앙
+  var xO1    = o1R.left + o1R.width / 2 - dR.left;          // o1 가로 정중앙
+  var xO2    = o2R.left + o2R.width / 2 - dR.left;          // o2 가로 정중앙
   // 최종 X = 0 (dot의 자연 위치)
 
   // 각 글자 중간이 피크 X
