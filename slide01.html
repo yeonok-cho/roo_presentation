@@ -16,6 +16,7 @@
       to   { transform: translateX(0);     opacity: 1; }
     }
     /* 점은 JS가 제어 — 초기 숨김 */
+    .dot-carrier { display: inline-block; }
     .hl-dot { display: inline-block; opacity: 0; }
   </style>
 </head>
@@ -38,7 +39,7 @@
 
         <div class="slide-num">01 / 10 &nbsp;·&nbsp; 타이틀</div>
         <div class="hero-name">
-          <span class="hl hl-0">R</span><span class="hl hl-1">o</span><span class="hl hl-2">o</span><span class="hero-accent hl-dot">.</span>
+          <span class="hl hl-0">R</span><span class="hl hl-1">o</span><span class="hl hl-2">o</span><span class="dot-carrier"><span class="hero-accent hl-dot">.</span></span>
         </div>
         <div class="hero-subtitle">ROO와 함께 일하는 새로운 방법 — 코딩 에이전트 Roo 소개</div>
 
@@ -101,58 +102,72 @@ function revealHero() {
   document.getElementById('heroPresenter').classList.add('revealed');
 }
 
-// 주황 점: 각 글자 위를 한 번씩 튕겨서 최종 위치로 오는 애니메이션
+// 주황 점: X축(등속)과 Y축(포물선)을 분리해 각 글자 위를 튕겨서 도착
 window.addEventListener('load', function () {
-  var dot = document.querySelector('.hl-dot');
-  var rEl  = document.querySelector('.hl-0');
-  var o1El = document.querySelector('.hl-1');
-  var o2El = document.querySelector('.hl-2');
-  if (!dot || !rEl || !o1El || !o2El) return;
+  var carrier = document.querySelector('.dot-carrier');
+  var dot     = document.querySelector('.hl-dot');
+  var rEl     = document.querySelector('.hl-0');
+  var o1El    = document.querySelector('.hl-1');
+  var o2El    = document.querySelector('.hl-2');
+  if (!carrier || !dot || !rEl || !o1El || !o2El) return;
 
-  // 마지막 글자(hl-2)가 다 나온 뒤 0.4초 뒤에 시작
-  setTimeout(function () {
-    var dR  = dot.getBoundingClientRect();
-    var rR  = rEl.getBoundingClientRect();
-    var o1R = o1El.getBoundingClientRect();
-    var o2R = o2El.getBoundingClientRect();
+  var dR  = dot.getBoundingClientRect();
+  var rR  = rEl.getBoundingClientRect();
+  var o1R = o1El.getBoundingClientRect();
+  var o2R = o2El.getBoundingClientRect();
 
-    // X: 점의 자연 위치 기준 상대값 (음수 = 왼쪽)
-    var startX         = -(dR.left + 120);                       // 화면 왼쪽 밖
-    var landRightOfR   = (rR.right  + o1R.left) / 2 - dR.left;  // R과 o1 사이
-    var landRightOfO1  = (o1R.right + o2R.left) / 2 - dR.left;  // o1과 o2 사이
+  // ── X 좌표 (dot의 자연 위치 기준 상대값) ──
+  var startX = -(dR.left + 80);          // 화면 왼쪽 밖
+  var xR     = rR.left   - dR.left;      // R 왼쪽 끝
+  var xO1    = o1R.left  - dR.left;      // o1 왼쪽 끝
+  var xO2    = o2R.left  - dR.left;      // o2 왼쪽 끝
+  // 최종 X = 0 (dot의 자연 위치)
 
-    // 호(弧) 정점 X: 각 글자 중심
-    var peakX_R  = rR.left  + rR.width  / 2 - dR.left;
-    var peakX_o1 = o1R.left + o1R.width / 2 - dR.left;
-    var peakX_o2 = o2R.left + o2R.width / 2 - dR.left;
+  // 각 글자 중간이 피크 X
+  var xP1 = (xR  + xO1) / 2;
+  var xP2 = (xO1 + xO2) / 2;
+  var xP3 = (xO2 + 0  ) / 2;
 
-    // 호 정점 Y: 글자 상단보다 15px 위 (글자 높이가 다르면 자동 반영)
-    var peakY_R  = rR.top  - dR.bottom - 15;
-    var peakY_o1 = o1R.top - dR.bottom - 15;
-    var peakY_o2 = o2R.top - dR.bottom - 15;
+  // 등속 기준 타이밍 (offset 0~1)
+  var span = -startX;
+  var tR   = (xR   - startX) / span;
+  var tP1  = (xP1  - startX) / span;
+  var tO1  = (xO1  - startX) / span;
+  var tP2  = (xP2  - startX) / span;
+  var tO2  = (xO2  - startX) / span;
+  var tP3  = (xP3  - startX) / span;
 
-    var T = 'translateX(%xpx) translateY(%ypx)'
-      .replace ? function(x, y) {
-        return 'translateX(' + x + 'px) translateY(' + y + 'px)';
-      } : null;
-    function tf(x, y) { return 'translateX(' + x + 'px) translateY(' + y + 'px)'; }
+  // ── Y 좌표: dot의 바닥이 각 글자 꼭대기에 닿도록 ──
+  var yR   = rR.top  - dR.bottom;   // 음수: R 위 → 높이 다름
+  var yO1  = o1R.top - dR.bottom;   // 음수: o1 위 (낮음)
+  var yO2  = o2R.top - dR.bottom;   // 음수: o2 위 (낮음)
+  // 최종 Y = 0
 
-    var keyframes = [
-      { transform: tf(startX, 0),          opacity: 0, offset: 0,     easing: 'ease-out' },
-      { transform: tf(startX, 0),          opacity: 1, offset: 0.04,  easing: 'ease-out' },
-      // R 위를 넘어 →
-      { transform: tf(peakX_R,  peakY_R),  opacity: 1, offset: 1/6,   easing: 'ease-in'  },
-      { transform: tf(landRightOfR,  0),   opacity: 1, offset: 2/6,   easing: 'ease-out' },
-      // o1 위를 넘어 →
-      { transform: tf(peakX_o1, peakY_o1), opacity: 1, offset: 3/6,   easing: 'ease-in'  },
-      { transform: tf(landRightOfO1, 0),   opacity: 1, offset: 4/6,   easing: 'ease-out' },
-      // o2 위를 넘어 → 최종 착지
-      { transform: tf(peakX_o2, peakY_o2), opacity: 1, offset: 5/6,   easing: 'ease-in'  },
-      { transform: tf(0, 0),               opacity: 1, offset: 1 },
-    ];
+  var extra = 55;                    // 글자 위에서 더 튀어오르는 높이
+  var yP1  = yR  - extra;           // R 위 피크 (더 높음)
+  var yP2  = yO1 - extra;           // o1 위 피크
+  var yP3  = yO2 - extra;           // o2 위 피크
 
-    dot.animate(keyframes, { duration: 2800, fill: 'both', easing: 'linear' });
-  }, 1600 + 400); // 글자 등장 완료(1.6s) + 여유(0.4s)
+  var DUR = 3400, DEL = 1800;
+
+  // X 애니메이션: carrier에 등속 이동 (선형)
+  carrier.animate([
+    { transform: 'translateX(' + startX + 'px)' },
+    { transform: 'translateX(0px)' }
+  ], { duration: DUR, delay: DEL, fill: 'both', easing: 'linear' });
+
+  // Y 애니메이션: dot에 포물선 (ease-out 올라가기 / ease-in 내려오기)
+  dot.animate([
+    { transform: 'translateY(' + yR + 'px)',  opacity: 0, offset: 0,   easing: 'linear'   },
+    { transform: 'translateY(' + yR + 'px)',  opacity: 1, offset: 0.06, easing: 'linear'  },
+    { transform: 'translateY(' + yR + 'px)',  opacity: 1, offset: tR,  easing: 'ease-out' },
+    { transform: 'translateY(' + yP1 + 'px)', opacity: 1, offset: tP1, easing: 'ease-in'  },
+    { transform: 'translateY(' + yO1 + 'px)', opacity: 1, offset: tO1, easing: 'ease-out' },
+    { transform: 'translateY(' + yP2 + 'px)', opacity: 1, offset: tP2, easing: 'ease-in'  },
+    { transform: 'translateY(' + yO2 + 'px)', opacity: 1, offset: tO2, easing: 'ease-out' },
+    { transform: 'translateY(' + yP3 + 'px)', opacity: 1, offset: tP3, easing: 'ease-in'  },
+    { transform: 'translateY(0px)',            opacity: 1, offset: 1 }
+  ], { duration: DUR, delay: DEL, fill: 'both', easing: 'linear' });
 });
 </script>
 </body>
