@@ -99,6 +99,20 @@
     .src-item { font-size: .61rem; color: var(--muted); }
     .src-item a { color: var(--primary); text-decoration: none; }
     .src-item a:hover { text-decoration: underline; }
+
+    /* 탭 */
+    .tab-bar { display: flex; gap: 5px; margin-bottom: 10px; }
+    .tab-btn {
+      background: var(--soft); border: none; cursor: pointer;
+      padding: 5px 12px; font-size: .71rem; font-weight: 700;
+      color: var(--muted); border-radius: 6px;
+      transition: all .18s; font-family: inherit;
+    }
+    .tab-btn.active { background: var(--primary); color: #fff; }
+    .tab-btn:hover:not(.active) { background: var(--border); color: var(--text); }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+    .bh-copilot { background: #0078D4; }
   </style>
 </head>
 <body>
@@ -160,91 +174,162 @@
             </div>
           </div>
 
-          <!-- 오른쪽: 성장 속도 차트 -->
+          <!-- 오른쪽: 탭 차트 -->
           <div class="chart-panel-right">
-            <div class="chart-panel-title">🚀 ARR 성장 속도 (연간 반복 매출)</div>
-            <div class="growth-list">
-
-              <div class="growth-company">OpenAI (ChatGPT)</div>
-              <div class="bar-h-row" data-delay="100" data-w="12">
-                <div class="bar-h-year">2024</div>
-                <div class="bar-h-track"><div class="bar-h-fill bh-openai is-24"></div></div>
-                <div class="bar-h-val">$37억</div>
-                <div class="no-badge"></div>
-              </div>
-              <div class="bar-h-row" data-delay="200" data-w="83">
-                <div class="bar-h-year">2026.3월</div>
-                <div class="bar-h-track"><div class="bar-h-fill bh-openai"></div></div>
-                <div class="bar-h-val">$250억</div>
-                <div class="growth-badge">6.8배 ↑</div>
-              </div>
-
-              <div class="growth-company">Anthropic (Claude)</div>
-              <div class="bar-h-row" data-delay="300" data-w="3">
-                <div class="bar-h-year">2024</div>
-                <div class="bar-h-track"><div class="bar-h-fill bh-claude is-24"></div></div>
-                <div class="bar-h-val">$10억</div>
-                <div class="no-badge"></div>
-              </div>
-              <div class="bar-h-row" data-delay="400" data-w="100">
-                <div class="bar-h-year">'26.4월</div>
-                <div class="bar-h-track"><div class="bar-h-fill bh-claude"></div></div>
-                <div class="bar-h-val">$300억</div>
-                <div class="growth-badge">30배 ↑</div>
-              </div>
-
-              <div class="growth-company">xAI (Grok)</div>
-              <div class="bar-h-row" data-delay="500" data-w="1">
-                <div class="bar-h-year">2024</div>
-                <div class="bar-h-track"><div class="bar-h-fill bh-xai is-24"></div></div>
-                <div class="bar-h-val">$1억</div>
-                <div class="no-badge"></div>
-              </div>
-              <div class="bar-h-row" data-delay="600" data-w="1.7">
-                <div class="bar-h-year">2025</div>
-                <div class="bar-h-track"><div class="bar-h-fill bh-xai"></div></div>
-                <div class="bar-h-val">$5억</div>
-                <div class="growth-badge">5배 ↑</div>
-              </div>
-
-              <div class="growth-company">Google (Gemini) <span style="font-size:.6rem;font-weight:400;color:var(--muted);">구독 ARR 기준</span></div>
-              <div class="bar-h-row" data-delay="700" data-w="1">
-                <div class="bar-h-year">2024</div>
-                <div class="bar-h-track"><div class="bar-h-fill bh-gemini is-24"></div></div>
-                <div class="bar-h-val">$3억</div>
-                <div class="no-badge"></div>
-              </div>
-              <div class="bar-h-row" data-delay="800" data-w="4">
-                <div class="bar-h-year">2025</div>
-                <div class="bar-h-track"><div class="bar-h-fill bh-gemini"></div></div>
-                <div class="bar-h-val">$12억</div>
-                <div class="growth-badge">4배+ ↑</div>
-              </div>
-
-              <div class="growth-company">Perplexity</div>
-              <div class="bar-h-row" data-delay="900" data-w="0.5">
-                <div class="bar-h-year">2024</div>
-                <div class="bar-h-track"><div class="bar-h-fill bh-perp is-24"></div></div>
-                <div class="bar-h-val">$0.8억</div>
-                <div class="no-badge"></div>
-              </div>
-              <div class="bar-h-row" data-delay="1000" data-w="1.5">
-                <div class="bar-h-year">'26.3월</div>
-                <div class="bar-h-track"><div class="bar-h-fill bh-perp"></div></div>
-                <div class="bar-h-val">$4.5억</div>
-                <div class="growth-badge">5배+ ↑</div>
-              </div>
-
+            <div class="tab-bar">
+              <button class="tab-btn active" onclick="switchTab(this,'tab-arr')">🚀 ARR 성장 속도</button>
+              <button class="tab-btn" onclick="switchTab(this,'tab-mau')">👥 이용자 수 (MAU)</button>
             </div>
-            <div class="chart-note">ARR(연간 반복 매출) 기준 · 1억$ = $100M · xAI는 Grok 독립 서비스 기준</div>
-            <div class="src-list">
-              <div class="src-item">OpenAI — <a href="https://technologychecker.io/blog/chatgpt-statistics" target="_blank">TechnologyChecker</a></div>
-              <div class="src-item">Anthropic — <a href="https://venturebeat.com/technology/anthropic-says-it-hit-a-30-billion-revenue-run-rate-after-crazy-80x-growth" target="_blank">VentureBeat</a></div>
-              <div class="src-item">Gemini — <a href="https://www.businessofapps.com/data/google-gemini-statistics/" target="_blank">Business of Apps</a></div>
-              <div class="src-item">xAI — <a href="https://aibusinessweekly.net/p/grok-ai-statistics" target="_blank">AI Business Weekly</a></div>
-              <div class="src-item">Perplexity — <a href="https://finance.yahoo.com/sectors/technology/articles/perplexity-arr-tops-450m-pricing-132500539.html" target="_blank">Yahoo Finance</a></div>
-              <div class="src-item">시장 규모 — <a href="https://sacra.com/c/openai/" target="_blank">Sacra</a></div>
+
+            <!-- TAB 1: ARR -->
+            <div class="tab-pane active" id="tab-arr">
+              <div class="growth-list">
+
+                <div class="growth-company">OpenAI (ChatGPT)</div>
+                <div class="bar-h-row" data-delay="100" data-w="12">
+                  <div class="bar-h-year">2024</div>
+                  <div class="bar-h-track"><div class="bar-h-fill bh-openai is-24"></div></div>
+                  <div class="bar-h-val">$37억</div>
+                  <div class="no-badge"></div>
+                </div>
+                <div class="bar-h-row" data-delay="200" data-w="83">
+                  <div class="bar-h-year">2026.3월</div>
+                  <div class="bar-h-track"><div class="bar-h-fill bh-openai"></div></div>
+                  <div class="bar-h-val">$250억</div>
+                  <div class="growth-badge">6.8배 ↑</div>
+                </div>
+
+                <div class="growth-company">Anthropic (Claude)</div>
+                <div class="bar-h-row" data-delay="300" data-w="3">
+                  <div class="bar-h-year">2024</div>
+                  <div class="bar-h-track"><div class="bar-h-fill bh-claude is-24"></div></div>
+                  <div class="bar-h-val">$10억</div>
+                  <div class="no-badge"></div>
+                </div>
+                <div class="bar-h-row" data-delay="400" data-w="100">
+                  <div class="bar-h-year">'26.4월</div>
+                  <div class="bar-h-track"><div class="bar-h-fill bh-claude"></div></div>
+                  <div class="bar-h-val">$300억</div>
+                  <div class="growth-badge">30배 ↑</div>
+                </div>
+
+                <div class="growth-company">xAI (Grok)</div>
+                <div class="bar-h-row" data-delay="500" data-w="1">
+                  <div class="bar-h-year">2024</div>
+                  <div class="bar-h-track"><div class="bar-h-fill bh-xai is-24"></div></div>
+                  <div class="bar-h-val">$1억</div>
+                  <div class="no-badge"></div>
+                </div>
+                <div class="bar-h-row" data-delay="600" data-w="1.7">
+                  <div class="bar-h-year">2025</div>
+                  <div class="bar-h-track"><div class="bar-h-fill bh-xai"></div></div>
+                  <div class="bar-h-val">$5억</div>
+                  <div class="growth-badge">5배 ↑</div>
+                </div>
+
+                <div class="growth-company">Google (Gemini) <span style="font-size:.6rem;font-weight:400;color:var(--muted);">구독 ARR 기준</span></div>
+                <div class="bar-h-row" data-delay="700" data-w="1">
+                  <div class="bar-h-year">2024</div>
+                  <div class="bar-h-track"><div class="bar-h-fill bh-gemini is-24"></div></div>
+                  <div class="bar-h-val">$3억</div>
+                  <div class="no-badge"></div>
+                </div>
+                <div class="bar-h-row" data-delay="800" data-w="4">
+                  <div class="bar-h-year">2025</div>
+                  <div class="bar-h-track"><div class="bar-h-fill bh-gemini"></div></div>
+                  <div class="bar-h-val">$12억</div>
+                  <div class="growth-badge">4배+ ↑</div>
+                </div>
+
+                <div class="growth-company">Perplexity</div>
+                <div class="bar-h-row" data-delay="900" data-w="0.5">
+                  <div class="bar-h-year">2024</div>
+                  <div class="bar-h-track"><div class="bar-h-fill bh-perp is-24"></div></div>
+                  <div class="bar-h-val">$0.8억</div>
+                  <div class="no-badge"></div>
+                </div>
+                <div class="bar-h-row" data-delay="1000" data-w="1.5">
+                  <div class="bar-h-year">'26.3월</div>
+                  <div class="bar-h-track"><div class="bar-h-fill bh-perp"></div></div>
+                  <div class="bar-h-val">$4.5억</div>
+                  <div class="growth-badge">5배+ ↑</div>
+                </div>
+
+              </div>
+              <div class="chart-note">ARR(연간 반복 매출) 기준 · 1억$ = $100M · xAI는 Grok 독립 서비스 기준</div>
+              <div class="src-list">
+                <div class="src-item">OpenAI — <a href="https://technologychecker.io/blog/chatgpt-statistics" target="_blank">TechnologyChecker</a></div>
+                <div class="src-item">Anthropic — <a href="https://venturebeat.com/technology/anthropic-says-it-hit-a-30-billion-revenue-run-rate-after-crazy-80x-growth" target="_blank">VentureBeat</a></div>
+                <div class="src-item">Gemini — <a href="https://www.businessofapps.com/data/google-gemini-statistics/" target="_blank">Business of Apps</a></div>
+                <div class="src-item">xAI — <a href="https://aibusinessweekly.net/p/grok-ai-statistics" target="_blank">AI Business Weekly</a></div>
+                <div class="src-item">Perplexity — <a href="https://finance.yahoo.com/sectors/technology/articles/perplexity-arr-tops-450m-pricing-132500539.html" target="_blank">Yahoo Finance</a></div>
+                <div class="src-item">시장 규모 — <a href="https://sacra.com/c/openai/" target="_blank">Sacra</a></div>
+              </div>
             </div>
+
+            <!-- TAB 2: MAU -->
+            <div class="tab-pane" id="tab-mau">
+              <div class="growth-list">
+
+                <div class="growth-company">ChatGPT (OpenAI)</div>
+                <div class="bar-h-row" data-delay="80" data-w="100">
+                  <div class="bar-h-year">2025.2월</div>
+                  <div class="bar-h-track"><div class="bar-h-fill bh-openai"></div></div>
+                  <div class="bar-h-val">7억 명</div>
+                  <div class="no-badge"></div>
+                </div>
+
+                <div class="growth-company">Gemini (Google)</div>
+                <div class="bar-h-row" data-delay="180" data-w="50">
+                  <div class="bar-h-year">2025</div>
+                  <div class="bar-h-track"><div class="bar-h-fill bh-gemini"></div></div>
+                  <div class="bar-h-val">3.5억 명</div>
+                  <div class="no-badge"></div>
+                </div>
+
+                <div class="growth-company">Copilot (Microsoft)</div>
+                <div class="bar-h-row" data-delay="280" data-w="21">
+                  <div class="bar-h-year">2025</div>
+                  <div class="bar-h-track"><div class="bar-h-fill bh-copilot"></div></div>
+                  <div class="bar-h-val">1.5억 명</div>
+                  <div class="no-badge"></div>
+                </div>
+
+                <div class="growth-company">Perplexity</div>
+                <div class="bar-h-row" data-delay="380" data-w="14">
+                  <div class="bar-h-year">2025</div>
+                  <div class="bar-h-track"><div class="bar-h-fill bh-perp"></div></div>
+                  <div class="bar-h-val">1억 명</div>
+                  <div class="no-badge"></div>
+                </div>
+
+                <div class="growth-company">Claude (Anthropic) <span style="font-size:.6rem;font-weight:400;color:var(--muted);">추정치</span></div>
+                <div class="bar-h-row" data-delay="480" data-w="11">
+                  <div class="bar-h-year">2025</div>
+                  <div class="bar-h-track"><div class="bar-h-fill bh-claude"></div></div>
+                  <div class="bar-h-val">0.8억 명</div>
+                  <div class="no-badge"></div>
+                </div>
+
+                <div class="growth-company">Grok (xAI)</div>
+                <div class="bar-h-row" data-delay="580" data-w="7">
+                  <div class="bar-h-year">2025</div>
+                  <div class="bar-h-track"><div class="bar-h-fill bh-xai"></div></div>
+                  <div class="bar-h-val">0.5억 명</div>
+                  <div class="no-badge"></div>
+                </div>
+
+              </div>
+              <div class="chart-note">MAU(월간 활성 사용자) 기준 · Claude는 공식 발표 없음(추정치) · 1억 명 = 100M</div>
+              <div class="src-list">
+                <div class="src-item">ChatGPT — <a href="https://www.businessofapps.com/data/chatgpt-statistics/" target="_blank">Business of Apps</a></div>
+                <div class="src-item">Gemini — <a href="https://www.businessofapps.com/data/google-gemini-statistics/" target="_blank">Business of Apps</a></div>
+                <div class="src-item">Copilot — <a href="https://www.businessofapps.com/data/microsoft-copilot-statistics/" target="_blank">Business of Apps</a></div>
+                <div class="src-item">Perplexity — <a href="https://www.businessofapps.com/data/perplexity-statistics/" target="_blank">Business of Apps</a></div>
+                <div class="src-item">Grok — <a href="https://www.businessofapps.com/data/grok-statistics/" target="_blank">Business of Apps</a></div>
+              </div>
+            </div>
+
           </div>
 
         </div>
@@ -263,6 +348,25 @@
 <script>const SLIDE = 2; const TOTAL = 11;</script>
 <script src="nav.js"></script>
 <script>
+var mauAnimated = false;
+
+function switchTab(btn, tabId) {
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.tab-pane').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+  if (tabId === 'tab-mau' && !mauAnimated) {
+    mauAnimated = true;
+    document.querySelectorAll('#tab-mau .bar-h-row').forEach(function(row) {
+      var fill = row.querySelector('.bar-h-fill');
+      var w    = parseFloat(row.dataset.w || 0);
+      setTimeout(function() {
+        fill.style.width = Math.max(w, 1) + '%';
+      }, parseFloat(row.dataset.delay || 0));
+    });
+  }
+}
+
 window.addEventListener('load', function () {
   document.querySelectorAll('.bar-v-col').forEach(function (col) {
     var h  = parseFloat(col.dataset.h || 0);
@@ -275,7 +379,7 @@ window.addEventListener('load', function () {
     }, 300 + dl);
   });
 
-  document.querySelectorAll('.bar-h-row').forEach(function (row) {
+  document.querySelectorAll('#tab-arr .bar-h-row').forEach(function (row) {
     var dl   = parseFloat(row.dataset.delay || 0);
     var fill = row.querySelector('.bar-h-fill');
     var w    = parseFloat(row.dataset.w || 0);
