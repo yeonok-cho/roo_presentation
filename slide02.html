@@ -3,15 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Roo — LLM 개념</title>
+  <title>Roo — AI 시장 현황</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .charts-row {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      margin-top: 8px;
+    }
+    .chart-panel-left  { flex: 0 0 36%; }
+    .chart-panel-right { flex: 1; }
+    .chart-panel-title {
+      font-size: .78rem;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    /* 세로 바 */
+    .bar-v-stage {
+      display: flex;
+      align-items: flex-end;
+      gap: 18px;
+      height: 180px;
+      border-bottom: 2px solid var(--border);
+    }
+    .bar-v-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      height: 100%;
+      justify-content: flex-end;
+    }
+    .bar-v-val {
+      font-size: .7rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 4px;
+      opacity: 0;
+      transition: opacity .4s .2s;
+    }
+    .bar-v-fill {
+      width: 100%;
+      border-radius: 5px 5px 0 0;
+      height: 0;
+      transition: height 1.1s cubic-bezier(.4,0,.2,1);
+    }
+    .bar-v-col:nth-child(1) .bar-v-fill { background: #f4b572; }
+    .bar-v-col:nth-child(2) .bar-v-fill { background: #f0923a; }
+    .bar-v-col:nth-child(3) .bar-v-fill { background: var(--primary); }
+    .bar-v-year { font-size: .75rem; font-weight: 700; color: var(--muted); margin-top: 6px; }
+    .bar-v-cagr { font-size: .65rem; color: var(--green); font-weight: 700; margin-top: 2px; }
+
+    /* 수평 바 */
+    .bar-h-list { display: flex; flex-direction: column; gap: 9px; }
+    .bar-h-row  { display: flex; align-items: center; gap: 10px; }
+    .bar-h-name {
+      width: 86px; font-size: .73rem; font-weight: 700;
+      color: var(--text); text-align: right; flex-shrink: 0;
+    }
+    .bar-h-track {
+      flex: 1; height: 22px;
+      background: var(--soft); border-radius: 4px; overflow: hidden;
+    }
+    .bar-h-fill {
+      height: 100%; border-radius: 4px;
+      width: 0; transition: width 1.1s cubic-bezier(.4,0,.2,1);
+    }
+    .bar-h-val { width: 60px; font-size: .68rem; font-weight: 700; color: var(--muted); flex-shrink: 0; }
+
+    .bh-meta    { background: #1877F2; }
+    .bh-chatgpt { background: #10A37F; }
+    .bh-gemini  { background: #4285F4; }
+    .bh-copilot { background: #0078D4; }
+    .bh-claude  { background: var(--primary); }
+    .bh-perp    { background: #1FB8CD; }
+    .bh-grok    { background: #888; }
+
+    .chart-note { font-size: .63rem; color: var(--muted); margin-top: 8px; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 14px 0 10px; }
+  </style>
 </head>
 <body>
 <div class="pres">
   <header class="topbar">
     <div class="topbar-brand"><div class="brand-dot">R</div> Roo 소개</div>
     <div class="topbar-progress-wrap">
-      <div class="progress-label"><span id="cur"></span> / 10</div>
+      <div class="progress-label"><span id="cur"></span> / 11</div>
       <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog"></div></div>
     </div>
     <div class="topbar-nav">
@@ -23,49 +105,95 @@
     <div class="slide">
       <div class="slide-inner">
 
-        <div class="slide-num">02 / 10 &nbsp;·&nbsp; LLM 개념</div>
-        <h1 class="slide-title">AI의 두뇌, LLM이란?</h1>
-        <p class="slide-sub">Large Language Model — 대규모 언어 모델</p>
+        <div class="slide-num">02 / 11 &nbsp;·&nbsp; AI 시장 현황</div>
+        <h1 class="slide-title">AI 시장, 얼마나 커지고 있나?</h1>
+        <p class="slide-sub">2024~2030 글로벌 AI 서비스 시장 성장과 주요 플랫폼 현황</p>
 
-        <div class="three-col">
-          <div class="col-card">
-            <div class="col-card-num">①</div>
-            <div>
-              <div class="col-card-title">어떻게 만들어졌나 — 수백억 개의 글을 읽다</div>
-              <div class="col-card-desc">
-                방대한 텍스트(책, 코드, 뉴스, 논문 등)를 학습하며, 
-                문장 속 다음 단어를 예측하는 과정을 수조 번 반복합니다.
-                사람이 독서를 통해 지식을 익히는 것과 비슷하지만, 
-                LLM은 인간이 평생 읽기 어려운 규모의 데이터를 학습합니다.
+        <div class="charts-row">
+
+          <!-- 왼쪽: 시장 규모 세로 바 차트 -->
+          <div class="chart-panel-left">
+            <div class="chart-panel-title">📈 글로벌 AI 시장 규모</div>
+            <div class="bar-v-stage">
+              <div class="bar-v-col" data-h="16" data-delay="0">
+                <div class="bar-v-val">$184B</div>
+                <div class="bar-v-fill"></div>
+              </div>
+              <div class="bar-v-col" data-h="45" data-delay="180">
+                <div class="bar-v-val">$500B</div>
+                <div class="bar-v-fill"></div>
+              </div>
+              <div class="bar-v-col" data-h="100" data-delay="360">
+                <div class="bar-v-val">$2T+</div>
+                <div class="bar-v-fill"></div>
               </div>
             </div>
-          </div>
-          <div class="col-card">
-            <div class="col-card-num">②</div>
-            <div>
-              <div class="col-card-title">어떻게 동작하나 — 문맥을 이해해서 답한다</div>
-              <div class="col-card-desc">
-                질문을 입력하면 → 학습한 패턴을 바탕으로 → 가장 자연스러운 답을 단어 하나씩 생성합니다.
-                계산기처럼 정해진 공식이 아니라, 문맥을 이해하여 확률적으로 가장 적절한 문장을 만들어냅니다.
+            <div style="display:flex; gap:18px; margin-top:0;">
+              <div style="flex:1; text-align:center;">
+                <div class="bar-v-year">2024</div>
+              </div>
+              <div style="flex:1; text-align:center;">
+                <div class="bar-v-year">2026</div>
+                <div class="bar-v-cagr">▲ 35~45%/년</div>
+              </div>
+              <div style="flex:1; text-align:center;">
+                <div class="bar-v-year">2030 전망</div>
+                <div class="bar-v-cagr">▲ 지속 성장</div>
               </div>
             </div>
-          </div>
-          <div class="col-card" style="border-color:var(--red-bg);">
-            <div class="col-card-num" style="color:var(--red);">③</div>
-            <div>
-              <div class="col-card-title">한계도 있다 — 완벽하지 않습니다</div>
-              <div class="limit-list">
-                <div class="limit-item">학습 데이터 이후의 사실은 모름 (Knowledge Cutoff)</div>
-                <div class="limit-item">가끔 틀린 정보를 자신 있게 말함 (Hallucination)</div>
-                <div class="limit-item">기본적으로 "대화"만 가능 → 실제 업무 실행은 제한적</div>
-                <div class="limit-item">따라서 최근에는 Agent, Tool Calling, Code Agent 기술과 결합되는 추세</div>
-              </div>
+            <div class="chart-note" style="margin-top:10px;">
+              AI 인프라 투자 포함 시 5조 달러+ 가능성
             </div>
           </div>
+
+          <!-- 오른쪽: TOP 7 수평 바 차트 -->
+          <div class="chart-panel-right">
+            <div class="chart-panel-title">👥 글로벌 TOP 7 플랫폼 — 사용자 규모</div>
+            <div class="bar-h-list">
+              <div class="bar-h-row" data-delay="100">
+                <div class="bar-h-name">Meta AI</div>
+                <div class="bar-h-track"><div class="bar-h-fill bh-meta" data-w="100"></div></div>
+                <div class="bar-h-val">10억+</div>
+              </div>
+              <div class="bar-h-row" data-delay="200">
+                <div class="bar-h-name">ChatGPT</div>
+                <div class="bar-h-track"><div class="bar-h-fill bh-chatgpt" data-w="90"></div></div>
+                <div class="bar-h-val">9억 (주간)</div>
+              </div>
+              <div class="bar-h-row" data-delay="300">
+                <div class="bar-h-name">Gemini</div>
+                <div class="bar-h-track"><div class="bar-h-fill bh-gemini" data-w="75"></div></div>
+                <div class="bar-h-val">7.5억+</div>
+              </div>
+              <div class="bar-h-row" data-delay="400">
+                <div class="bar-h-name">Copilot</div>
+                <div class="bar-h-track"><div class="bar-h-fill bh-copilot" data-w="30"></div></div>
+                <div class="bar-h-val">3억+</div>
+              </div>
+              <div class="bar-h-row" data-delay="500">
+                <div class="bar-h-name">Claude</div>
+                <div class="bar-h-track"><div class="bar-h-fill bh-claude" data-w="20"></div></div>
+                <div class="bar-h-val">2억+</div>
+              </div>
+              <div class="bar-h-row" data-delay="600">
+                <div class="bar-h-name">Perplexity</div>
+                <div class="bar-h-track"><div class="bar-h-fill bh-perp" data-w="10"></div></div>
+                <div class="bar-h-val">1억+</div>
+              </div>
+              <div class="bar-h-row" data-delay="700">
+                <div class="bar-h-name">Grok</div>
+                <div class="bar-h-track"><div class="bar-h-fill bh-grok" data-w="5"></div></div>
+                <div class="bar-h-val">5천만+</div>
+              </div>
+            </div>
+            <div class="chart-note">월간 활성 사용자 기준 (추정치 포함) · 2026년 상반기</div>
+          </div>
+
         </div>
 
+        <hr class="section-divider">
         <div class="highlight-box">
-          💡 <strong>한 줄 요약:</strong> LLM은 엄청나게 많은 글을 읽고 자란 "텍스트 전문가"입니다.
+          💡 AI는 단순 소프트웨어를 넘어 <strong>인프라 산업</strong>으로 이동 중 — 반도체·클라우드·검색·업무 시장을 동시에 흡수하며 성장하고 있습니다.
         </div>
 
       </div>
@@ -74,7 +202,30 @@
   <footer class="bottombar" id="dots"></footer>
   <button class="paw-btn" id="pawBtn" onclick="goto(1)" title="처음으로 ↩">🏠</button>
 </div>
-<script>const SLIDE = 2; const TOTAL = 10;</script>
+<script>const SLIDE = 2; const TOTAL = 11;</script>
 <script src="nav.js"></script>
+<script>
+window.addEventListener('load', function () {
+  document.querySelectorAll('.bar-v-col').forEach(function (col) {
+    var h  = parseFloat(col.dataset.h || 0);
+    var dl = parseFloat(col.dataset.delay || 0);
+    var fill = col.querySelector('.bar-v-fill');
+    var val  = col.querySelector('.bar-v-val');
+    setTimeout(function () {
+      fill.style.height = (h * 1.8) + 'px';
+      val.style.opacity = '1';
+    }, 300 + dl);
+  });
+
+  document.querySelectorAll('.bar-h-row').forEach(function (row) {
+    var dl   = parseFloat(row.dataset.delay || 0);
+    var fill = row.querySelector('.bar-h-fill');
+    var w    = parseFloat(fill.dataset.w || 0);
+    setTimeout(function () {
+      fill.style.width = w + '%';
+    }, 300 + dl);
+  });
+});
+</script>
 </body>
 </html>

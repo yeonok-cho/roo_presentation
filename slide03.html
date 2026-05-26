@@ -3,69 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Roo — 서비스 비교</title>
+  <title>Roo — LLM 개념</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* 탭 */
-    .tab-bar {
-      display: flex; margin-bottom: 14px;
-      border-bottom: 2px solid var(--border);
-    }
-    .tab-btn {
-      padding: 9px 20px; font-size: .82rem; font-weight: 700;
-      border: none; background: none; cursor: pointer; font-family: inherit;
-      color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -2px;
-      transition: color .15s, border-color .15s, background .15s;
-      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-    }
-    .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
-    .tab-btn:hover:not(.active) { color: var(--text); background: var(--soft); }
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
-
-    /* 테이블 — 모든 열 균등 너비 + 1열 강조 */
-    .tab-panel .cmp-table { table-layout: fixed; width: 100%; }
-    .tab-panel .cmp-table th,
-    .tab-panel .cmp-table td { width: auto; white-space: normal; }
-    .tab-panel .cmp-table td:first-child {
-      color: var(--primary); font-weight: 800;
-      white-space: normal; width: auto;
-      font-size: .78rem; letter-spacing: -.01em;
-    }
-    .tab-panel .cmp-table th:first-child { width: auto; }
-
-    /* tool pill */
-    .tool-pill {
-      display: inline-flex; align-items: center; gap: 4px;
-      font-size: .72rem; font-weight: 700; padding: 2px 8px; border-radius: 99px;
-    }
-    .tool-yes  { background: var(--green-bg); color: var(--green); }
-    .tool-no   { background: var(--red-bg);   color: var(--red); }
-    .tool-part { background: var(--soft); color: var(--muted); border: 1px solid var(--border); }
-
-    /* 개념 흐름 배너 */
-    .concept-flow {
-      display: flex; align-items: center; gap: 6px;
-      margin-bottom: 12px; font-size: .78rem; flex-wrap: wrap;
-    }
-    .cf-step {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-sm); padding: 5px 12px;
-      font-weight: 700; color: var(--muted);
-    }
-    .cf-step.cf-active {
-      background: var(--primary-bg); border-color: var(--primary-br);
-      color: var(--primary);
-    }
-    .cf-arrow { color: var(--border); font-size: .9rem; font-weight: 700; }
-  </style>
 </head>
 <body>
 <div class="pres">
   <header class="topbar">
     <div class="topbar-brand"><div class="brand-dot">R</div> Roo 소개</div>
     <div class="topbar-progress-wrap">
-      <div class="progress-label"><span id="cur"></span> / 10</div>
+      <div class="progress-label"><span id="cur"></span> / 11</div>
       <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog"></div></div>
     </div>
     <div class="topbar-nav">
@@ -77,235 +23,49 @@
     <div class="slide">
       <div class="slide-inner">
 
-        <div class="slide-num">03 / 10 &nbsp;·&nbsp; 서비스 비교</div>
-        <h1 class="slide-title">AI, 어디까지 시킬 수 있나요?</h1>
-        <p class="slide-sub">채팅 → 도구 사용 → 자율 실행, 세 단계로 AI의 역할이 확장됩니다.</p>
+        <div class="slide-num">03 / 11 &nbsp;&middot;&nbsp; LLM 개념</div>
+        <h1 class="slide-title">AI의 두뇌, LLM이란?</h1>
+        <p class="slide-sub">Large Language Model — 대규모 언어 모델</p>
 
-        <!-- 탭 바 -->
-        <div class="tab-bar">
-          <button class="tab-btn active" onclick="switchTab(this,'tab1')">💬 LLM 채팅 서비스</button>
-          <button class="tab-btn"        onclick="switchTab(this,'tab2')">🔧 Tool Calling</button>
-          <button class="tab-btn"        onclick="switchTab(this,'tab3')">💻 코드 에이전트</button>
-        </div>
-
-        <!-- ── 탭 1: LLM 채팅 서비스 ── -->
-        <div class="tab-panel active" id="tab1">
-          <div class="concept-flow">
-            <div class="cf-step cf-active">💬 LLM 채팅 — 지금 여기</div>
-            <div class="cf-arrow">→</div>
-            <div class="cf-step">🔧 Tool Calling</div>
-            <div class="cf-arrow">→</div>
-            <div class="cf-step">💻 코드 에이전트</div>
+        <div class="three-col">
+          <div class="col-card">
+            <div class="col-card-num">①</div>
+            <div>
+              <div class="col-card-title">어떻게 만들어졌나 — 수백억 개의 글을 읽다</div>
+              <div class="col-card-desc">
+                방대한 텍스트(책, 코드, 뉴스, 논문 등)를 학습하며, 
+                문장 속 다음 단어를 예측하는 과정을 수조 번 반복합니다.
+                사람이 독서를 통해 지식을 익히는 것과 비슷하지만, 
+                LLM은 인간이 평생 읽기 어려운 규모의 데이터를 학습합니다.
+              </div>
+            </div>
           </div>
-          <div class="tbl-wrap">
-            <table class="cmp-table">
-              <thead>
-                <tr>
-                  <th>항목</th>
-                  <th>ChatGPT</th>
-                  <th>Claude</th>
-                  <th>Gemini</th>
-                  <th>Copilot</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>만든 곳</td>
-                  <td>OpenAI</td>
-                  <td>Anthropic</td>
-                  <td>Google</td>
-                  <td>Microsoft</td>
-                </tr>
-                <tr>
-                  <td>대표 모델</td>
-                  <td>GPT-4o</td>
-                  <td>Claude 3.7</td>
-                  <td>Gemini 2.0</td>
-                  <td>GPT-4o</td>
-                </tr>
-                <tr>
-                  <td>무료 플랜</td>
-                  <td><span class="pill pill-green">✓ 있음</span></td>
-                  <td><span class="pill pill-green">✓ 있음</span></td>
-                  <td><span class="pill pill-green">✓ 있음</span></td>
-                  <td><span class="pill pill-green">✓ 있음</span></td>
-                </tr>
-                <tr>
-                  <td>유료 구독</td>
-                  <td>$20 / 월</td>
-                  <td>$20 / 월</td>
-                  <td>$19.99 / 월</td>
-                  <td>$20 / 월</td>
-                </tr>
-                <tr>
-                  <td>사용 환경</td>
-                  <td>웹 · 앱</td>
-                  <td>웹 · 앱</td>
-                  <td>웹 · 앱</td>
-                  <td>웹 · 앱 · Windows</td>
-                </tr>
-                <tr>
-                  <td>강점</td>
-                  <td>범용 · 생태계</td>
-                  <td>긴 문서 · 코딩</td>
-                  <td>Google 연동</td>
-                  <td>MS Office 연동</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="col-card">
+            <div class="col-card-num">②</div>
+            <div>
+              <div class="col-card-title">어떻게 동작하나 — 문맥을 이해해서 답한다</div>
+              <div class="col-card-desc">
+                질문을 입력하면 → 학습한 패턴을 바탕으로 → 가장 자연스러운 답을 단어 하나씩 생성합니다.
+                계산기처럼 정해진 공식이 아니라, 문맥을 이해하여 확률적으로 가장 적절한 문장을 만들어냅니다.
+              </div>
+            </div>
           </div>
-          <div class="highlight-box" style="margin-top:12px;">
-            💡 모두 <strong>웹 브라우저에서 대화</strong>하는 방식입니다. 답은 줄 수 있지만, 내 파일을 직접 열거나 터미널을 실행하지는 못합니다.
+          <div class="col-card" style="border-color:var(--red-bg);">
+            <div class="col-card-num" style="color:var(--red);">③</div>
+            <div>
+              <div class="col-card-title">한계도 있다 — 완벽하지 않습니다</div>
+              <div class="limit-list">
+                <div class="limit-item">학습 데이터 이후의 사실은 모름 (Knowledge Cutoff)</div>
+                <div class="limit-item">가끔 틀린 정보를 자신 있게 말함 (Hallucination)</div>
+                <div class="limit-item">기본적으로 "대화"만 가능 → 실제 업무 실행은 제한적</div>
+                <div class="limit-item">따라서 최근에는 Agent, Tool Calling, Code Agent 기술과 결합되는 추세</div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- ── 탭 2: Tool Calling ── -->
-        <div class="tab-panel" id="tab2">
-          <div class="concept-flow">
-            <div class="cf-step">💬 LLM 채팅</div>
-            <div class="cf-arrow">→</div>
-            <div class="cf-step cf-active">🔧 Tool Calling — 지금 여기</div>
-            <div class="cf-arrow">→</div>
-            <div class="cf-step">💻 코드 에이전트</div>
-          </div>
-          <div class="tbl-wrap">
-            <table class="cmp-table">
-              <thead>
-                <tr>
-                  <th>기능</th>
-                  <th>ChatGPT</th>
-                  <th>Claude</th>
-                  <th>Gemini</th>
-                  <th>Copilot</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>웹 검색</td>
-                  <td><span class="tool-pill tool-yes">✓</span></td>
-                  <td><span class="tool-pill tool-yes">✓</span></td>
-                  <td><span class="tool-pill tool-yes">✓</span></td>
-                  <td><span class="tool-pill tool-yes">✓ Bing</span></td>
-                </tr>
-                <tr>
-                  <td>코드 실행</td>
-                  <td><span class="tool-pill tool-yes">✓</span></td>
-                  <td><span class="tool-pill tool-yes">✓</span></td>
-                  <td><span class="tool-pill tool-yes">✓</span></td>
-                  <td><span class="tool-pill tool-part">제한적</span></td>
-                </tr>
-                <tr>
-                  <td>이미지 생성</td>
-                  <td><span class="tool-pill tool-yes">✓ DALL-E</span></td>
-                  <td><span class="tool-pill tool-no">✗</span></td>
-                  <td><span class="tool-pill tool-yes">✓ Imagen</span></td>
-                  <td><span class="tool-pill tool-yes">✓ DALL-E</span></td>
-                </tr>
-                <tr>
-                  <td>파일 분석</td>
-                  <td><span class="tool-pill tool-yes">✓</span></td>
-                  <td><span class="tool-pill tool-yes">✓</span></td>
-                  <td><span class="tool-pill tool-yes">✓</span></td>
-                  <td><span class="tool-pill tool-yes">✓</span></td>
-                </tr>
-                <tr>
-                  <td>외부 API 연동</td>
-                  <td><span class="tool-pill tool-yes">✓ GPTs</span></td>
-                  <td><span class="tool-pill tool-yes">✓ MCP</span></td>
-                  <td><span class="tool-pill tool-yes">✓ Extensions</span></td>
-                  <td><span class="tool-pill tool-yes">✓ Plugins</span></td>
-                </tr>
-                <tr>
-                  <td>컴퓨터 제어</td>
-                  <td><span class="tool-pill tool-part">제한적</span></td>
-                  <td><span class="tool-pill tool-yes">✓ Computer Use</span></td>
-                  <td><span class="tool-pill tool-no">✗</span></td>
-                  <td><span class="tool-pill tool-no">✗</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="highlight-box" style="margin-top:12px;">
-            💡 <strong>Tool Calling</strong> = AI가 도구를 <strong>한 번씩</strong> 호출하는 단위 행동입니다. "웹 검색해줘" → 검색 결과 반환처럼, 요청 1개에 도구 1번 사용이 기본입니다.
-          </div>
-        </div>
-
-        <!-- ── 탭 3: 코드 에이전트 ── -->
-        <div class="tab-panel" id="tab3">
-          <div class="concept-flow">
-            <div class="cf-step">💬 LLM 채팅</div>
-            <div class="cf-arrow">→</div>
-            <div class="cf-step">🔧 Tool Calling</div>
-            <div class="cf-arrow">→</div>
-            <div class="cf-step cf-active">💻 코드 에이전트 — 지금 여기</div>
-          </div>
-          <div class="tbl-wrap">
-            <table class="cmp-table">
-              <thead>
-                <tr>
-                  <th>항목</th>
-                  <th class="roo-col">🤖 Roo</th>
-                  <th>Cursor</th>
-                  <th>GitHub Copilot</th>
-                  <th>Windsurf</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>기반 IDE</td>
-                  <td class="roo-col">VS Code</td>
-                  <td>자체 에디터</td>
-                  <td>모든 IDE</td>
-                  <td>자체 에디터</td>
-                </tr>
-                <tr>
-                  <td>사용 모델</td>
-                  <td class="roo-col">선택 가능</td>
-                  <td>Claude · GPT</td>
-                  <td>GPT-4o</td>
-                  <td>Claude · GPT</td>
-                </tr>
-                <tr>
-                  <td>파일 직접 수정</td>
-                  <td class="roo-col"><span class="pill pill-green">✓</span></td>
-                  <td><span class="pill pill-green">✓</span></td>
-                  <td><span class="pill pill-muted">제한적</span></td>
-                  <td><span class="pill pill-green">✓</span></td>
-                </tr>
-                <tr>
-                  <td>터미널 실행</td>
-                  <td class="roo-col"><span class="pill pill-green">✓</span></td>
-                  <td><span class="pill pill-green">✓</span></td>
-                  <td><span class="pill pill-red">✗</span></td>
-                  <td><span class="pill pill-green">✓</span></td>
-                </tr>
-                <tr>
-                  <td>멀티파일 작업</td>
-                  <td class="roo-col"><span class="pill pill-green">✓</span></td>
-                  <td><span class="pill pill-green">✓</span></td>
-                  <td><span class="pill pill-muted">제한적</span></td>
-                  <td><span class="pill pill-green">✓</span></td>
-                </tr>
-                <tr>
-                  <td>비용</td>
-                  <td class="roo-col"><strong>사내 API</strong></td>
-                  <td>$20 / 월</td>
-                  <td>$10 / 월</td>
-                  <td>$15 / 월</td>
-                </tr>
-                <tr>
-                  <td>오픈소스</td>
-                  <td class="roo-col"><span class="pill pill-green">✓</span></td>
-                  <td><span class="pill pill-red">✗</span></td>
-                  <td><span class="pill pill-red">✗</span></td>
-                  <td><span class="pill pill-red">✗</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="highlight-box" style="margin-top:12px;">
-            💡 <strong>코드 에이전트</strong> = Tool Calling을 <strong>목표가 달성될 때까지 스스로 반복</strong>합니다. 파일 읽기 → 수정 → 실행 → 오류 확인 → 재수정을 사람 개입 없이 이어서 처리합니다.
-          </div>
+        <div class="highlight-box">
+          💡 <strong>한 줄 요약:</strong> LLM은 엄청나게 많은 글을 읽고 자란 "텍스트 전문가"입니다.
         </div>
 
       </div>
@@ -314,15 +74,7 @@
   <footer class="bottombar" id="dots"></footer>
   <button class="paw-btn" id="pawBtn" onclick="goto(1)" title="처음으로 ↩">🏠</button>
 </div>
-<script>const SLIDE = 3; const TOTAL = 10;</script>
+<script>const SLIDE = 3; const TOTAL = 11;</script>
 <script src="nav.js"></script>
-<script>
-function switchTab(btn, panelId) {
-  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
-  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
-  btn.classList.add('active');
-  document.getElementById(panelId).classList.add('active');
-}
-</script>
 </body>
 </html>

@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Roo — 설치</title>
+  <title>Roo — 선택 기준</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .tbl-wrap { overflow-x: auto; }
+    .cmp-table { min-width: 660px; white-space: nowrap; }
+  </style>
 </head>
 <body>
 <div class="pres">
   <header class="topbar">
     <div class="topbar-brand"><div class="brand-dot">R</div> Roo 소개</div>
     <div class="topbar-progress-wrap">
-      <div class="progress-label"><span id="cur"></span> / 10</div>
+      <div class="progress-label"><span id="cur"></span> / 11</div>
       <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog"></div></div>
     </div>
     <div class="topbar-nav">
@@ -23,57 +27,49 @@
     <div class="slide">
       <div class="slide-inner">
 
-        <div class="slide-num">07 / 10 &nbsp;·&nbsp; 설치</div>
-        <h1 class="slide-title">Roo 시작하기 — 4단계면 충분합니다</h1>
-        <p class="slide-sub">설치 완료까지 약 10분. 한 번만 하면 됩니다.</p>
+        <div class="slide-num">07 / 11 &nbsp;&middot;&nbsp; 선택 기준</div>
+        <h1 class="slide-title">상황에 따라 골라 쓰세요</h1>
+        <p class="slide-sub">두 도구는 경쟁 관계가 아닙니다. 상황에 맞게 고르면 됩니다.</p>
 
-        <div class="install-steps">
-          <div class="install-step">
-            <div class="step-num">1</div>
-            <div class="step-body">
-              <div class="step-title">VS Code 설치</div>
-              <div class="step-desc">
-                <a href="https://code.visualstudio.com" target="_blank">code.visualstudio.com</a> 에서 무료로 다운로드합니다.<br>
-                전 세계 개발자의 73%가 쓰는 코드 편집기로, 설치 파일을 실행하면 됩니다.
-              </div>
-              <span class="step-badge">무료</span>
-            </div>
-          </div>
-          <div class="install-step">
-            <div class="step-num">2</div>
-            <div class="step-body">
-              <div class="step-title">Extensions 탭 열기</div>
-              <div class="step-desc">
-                VS Code 실행 후 <span class="kbd">Ctrl+Shift+X</span> (Mac: <span class="kbd">Cmd+Shift+X</span>)를 누르면 확장 프로그램 탭이 열립니다.<br>
-                앱스토어처럼 필요한 도구를 검색해서 설치하는 공간입니다.
-              </div>
-            </div>
-          </div>
-          <div class="install-step">
-            <div class="step-num">3</div>
-            <div class="step-body">
-              <div class="step-title">"Roo Code" 검색 후 설치</div>
-              <div class="step-desc">
-                검색창에 <span class="kbd">Roo Code</span> 입력 후 Install 버튼 클릭.<br>
-                설치 완료까지 1분 이내입니다.
-              </div>
-              <span class="step-badge">오픈소스</span>
-            </div>
-          </div>
-          <div class="install-step">
-            <div class="step-num">4</div>
-            <div class="step-body">
-              <div class="step-title">API 키 입력 — 사내 API 사용</div>
-              <div class="step-desc">
-                사내 API를 사용합니다 → <strong>토큰 무제한, 별도 비용 없음</strong><br>
-                설정 방법: <span class="kbd">go/ums</span> 에서 키 발급 후 Roo 설정 화면에 붙여넣기
-              </div>
-            </div>
-          </div>
+        <div class="tbl-wrap" style="margin-bottom:14px;">
+          <table class="cmp-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>🌐 ChatGPT / Claude 웹</th>
+                <th class="roo-col">🤖 Roo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="white-space:normal;vertical-align:middle;">이럴 때<br>좋아요</td>
+                <td>빠른 질문·답변 / 문서 요약 / 아이디어 브레인스토밍 / 이미지 첨부</td>
+                <td class="roo-col">실제 코드 작업 / 파일 수정 자동화 / 프로젝트 전체 리팩토링</td>
+              </tr>
+              <tr>
+                <td>장점</td>
+                <td>설치 없이 바로 / 어느 기기에서나 / 초보자도 5분 안에 시작</td>
+                <td class="roo-col">파일 직접 읽기·쓰기 / 터미널 자동 실행 / 프로젝트 전체 이해</td>
+              </tr>
+              <tr>
+                <td>단점</td>
+                <td>복붙 반복 / 터미널은 직접 / 코드 외부 전송</td>
+                <td class="roo-col">VS Code 초기 설치 필요 / API 키 발급 과정 있음 / 모바일 불편</td>
+              </tr>
+              <tr>
+                <td>비용</td>
+                <td>무료~$20/월 정액</td>
+                <td class="roo-col"><strong>사내 API 무제한 사용 가능</strong></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <div class="info-box">
-          💡 <strong>팁:</strong> 설치 중 오류가 생기면 편하게 문의해 주세요. 함께 해결합니다.
+        <div class="select-guide">
+          <div class="select-guide-title">선택 가이드</div>
+          <div class="select-row"><span class="select-arrow">→</span><span>빠른 질문, 글쓰기, 요약이 필요하다면 → <strong>ChatGPT / Claude 웹</strong></span></div>
+          <div class="select-row"><span class="select-arrow">→</span><span>파일을 열고 실제로 코드를 고쳐야 한다면 → <strong>Roo</strong></span></div>
+          <div class="select-row"><span class="select-arrow">→</span><span>둘 다 쓰는 게 정답입니다. 도구는 상황에 맞게 고르면 됩니다.</span></div>
         </div>
 
       </div>
@@ -82,7 +78,7 @@
   <footer class="bottombar" id="dots"></footer>
   <button class="paw-btn" id="pawBtn" onclick="goto(1)" title="처음으로 ↩">🏠</button>
 </div>
-<script>const SLIDE = 7; const TOTAL = 10;</script>
+<script>const SLIDE = 7; const TOTAL = 11;</script>
 <script src="nav.js"></script>
 </body>
 </html>
