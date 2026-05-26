@@ -120,79 +120,27 @@ function revealHero() {
   document.getElementById('heroPresenter').classList.add('revealed');
 }
 
-// 주황 점: R·o·o 중앙에 착지, 균일 높이로 튀며 최종 위치로
+// 주황 점: 왼쪽에서 굴러서 제자리로
 window.addEventListener('load', function () {
-  var carrier = document.querySelector('.dot-carrier');
-  var dot     = document.querySelector('.hl-dot');
-  var rEl     = document.querySelector('.hl-0');
-  var o1El    = document.querySelector('.hl-1');
-  var o2El    = document.querySelector('.hl-2');
-  if (!carrier || !dot || !rEl || !o1El || !o2El) return;
+  var dot  = document.querySelector('.hl-dot');
+  var ball = dot && dot.querySelector('.dot-ball');
+  if (!dot) return;
 
-  var dR  = dot.getBoundingClientRect();
-  var rR  = rEl.getBoundingClientRect();
-  var o1R = o1El.getBoundingClientRect();
-  var o2R = o2El.getBoundingClientRect();
+  var startX = -(dot.getBoundingClientRect().left + 100);
+  var DUR = 2000, DEL = 1400;
 
-  // 착지 X: 각 글자 가로 중앙 (dot 자연 위치 기준)
-  var startX = -(dR.left + 80);
-  var xR  = rR.left  + rR.width  / 2 - dR.left;   // R 중앙
-  var xO1 = o1R.left + o1R.width / 2 - dR.left;   // 첫 번째 o 중앙
-  var xO2 = o2R.left + o2R.width / 2 - dR.left;   // 마지막 o 중앙
-  // 최종 착지 X = 0
+  dot.animate([
+    { opacity: 0, transform: 'translateX(' + startX + 'px)', offset: 0   },
+    { opacity: 1, transform: 'translateX(' + startX + 'px)', offset: 0.01 },
+    { opacity: 1, transform: 'translateX(0px)',               offset: 1   }
+  ], { duration: DUR, delay: DEL, fill: 'both', easing: 'cubic-bezier(.2,0,.4,1)' });
 
-  // 4번째 착지 X: o2와 "." 사이 (o2에 더 가깝게)
-  var shift4 = xO2 * 0.65;   // o2 중앙과 "." 사이 (약간 오른쪽)
-
-  // 피크 X: 인접 착지점 사이 중간
-  var xP1 = (xR   + xO1  ) / 2;
-  var xP2 = (xO1  + xO2  ) / 2;
-  var xP3 = (xO2  + shift4) / 2;  // o2 ~ 4번째 착지 사이
-
-  // startX → shift4 까지 등속 (LAND=75%), 그 후 shift4 → 0 안착
-  var LAND = 0.75;
-  var span = shift4 - startX;
-  var tR  = (xR    - startX) / span * LAND;
-  var tP1 = (xP1   - startX) / span * LAND;
-  var tO1 = (xO1   - startX) / span * LAND;
-  var tP2 = (xP2   - startX) / span * LAND;
-  var tO2 = (xO2   - startX) / span * LAND;
-  var tP3 = (xP3   - startX) / span * LAND;
-
-  var B   = -60;   // 균일 바운스 높이(px, 음수 = 위)
-  var LY  = -40;   // 착지 높이 오프셋(px)
-  var DUR = 3600, DEL = 1800;
-
-  // X: shift4까지 등속 → 이후 0(최종)으로 이동
-  carrier.animate([
-    { transform: 'translateX(' + startX + 'px)', offset: 0,    easing: 'linear' },
-    { transform: 'translateX(' + shift4 + 'px)', offset: LAND, easing: 'linear' },
-    { transform: 'translateX(0px)',               offset: 1 }
-  ], { duration: DUR, delay: DEL, fill: 'both' });
-
-  // 공 줄무늬 회전
-  var ball = dot.querySelector('.dot-ball');
   if (ball) {
     ball.animate([
-      { transform: 'translateX(-50%) rotate(0deg)'     },
-      { transform: 'translateX(-50%) rotate(-1080deg)' }
-    ], { duration: DUR, delay: DEL, fill: 'both', easing: 'linear' });
+      { transform: 'translateX(-50%) rotate(0deg)'    },
+      { transform: 'translateX(-50%) rotate(-720deg)' }
+    ], { duration: DUR, delay: DEL, fill: 'both', easing: 'cubic-bezier(.2,0,.4,1)' });
   }
-
-  // Y: R·o·o 3번 착지 → "." 4번째 착지 → 안착 바운스
-  dot.animate([
-    { transform: 'translateY(0px)',          opacity: 0, offset: 0,                      easing: 'linear'   },
-    { transform: 'translateY(0px)',          opacity: 1, offset: Math.min(tR*0.4, 0.05), easing: 'linear'   },
-    { transform: 'translateY(' + LY + 'px)',opacity: 1, offset: tR,   easing: 'ease-out' }, // 1착 R
-    { transform: 'translateY(' + B + 'px)', opacity: 1, offset: tP1,  easing: 'ease-in'  },
-    { transform: 'translateY(' + LY + 'px)',opacity: 1, offset: tO1,  easing: 'ease-out' }, // 2착 o1
-    { transform: 'translateY(' + B + 'px)', opacity: 1, offset: tP2,  easing: 'ease-in'  },
-    { transform: 'translateY(' + LY + 'px)',opacity: 1, offset: tO2,  easing: 'ease-out' }, // 3착 o2
-    { transform: 'translateY(' + B + 'px)', opacity: 1, offset: tP3,  easing: 'ease-in'  },
-    { transform: 'translateY(' + LY + 'px)',opacity: 1, offset: LAND, easing: 'ease-out' }, // 4착 "."
-    { transform: 'translateY(' + (LY - 22) + 'px)',opacity: 1, offset: 0.88, easing: 'ease-in'  }, // 안착 바운스
-    { transform: 'translateY(0px)',          opacity: 1, offset: 1 }
-  ], { duration: DUR, delay: DEL, fill: 'both', easing: 'linear' });
 });
 </script>
 </body>
