@@ -17,7 +17,25 @@
     }
     /* 점은 JS가 제어 — 초기 숨김 */
     .dot-carrier { display: inline-block; }
-    .hl-dot { display: inline-block; opacity: 0; }
+    .hl-dot { display: inline-block; opacity: 0; position: relative; color: transparent; }
+    /* 줄무늬 공 */
+    .dot-ball {
+      position: absolute;
+      width: 0.19em; height: 0.19em;
+      background: var(--primary);
+      border-radius: 50%;
+      left: 50%; bottom: 0.08em;
+      transform: translateX(-50%);
+      overflow: hidden;
+    }
+    .dot-mark {
+      position: absolute;
+      width: 2.5px; height: 68%;
+      background: rgba(255,255,255,0.72);
+      border-radius: 2px;
+      top: 16%; left: 50%;
+      transform: translateX(-50%);
+    }
   </style>
 </head>
 <body>
@@ -39,7 +57,7 @@
 
         <div class="slide-num">01 / 10 &nbsp;·&nbsp; 타이틀</div>
         <div class="hero-name">
-          <span class="hl hl-0">R</span><span class="hl hl-1">o</span><span class="hl hl-2">o</span><span class="dot-carrier"><span class="hero-accent hl-dot">.</span></span>
+          <span class="hl hl-0">R</span><span class="hl hl-1">o</span><span class="hl hl-2">o</span><span class="dot-carrier"><span class="hero-accent hl-dot">.<span class="dot-ball"><span class="dot-mark"></span></span></span></span>
         </div>
         <div class="hero-subtitle">ROO와 함께 일하는 새로운 방법 — 코딩 에이전트 Roo 소개</div>
 
@@ -118,9 +136,9 @@ window.addEventListener('load', function () {
 
   // ── X 좌표 (dot의 자연 위치 기준 상대값) ──
   var startX = -(dR.left + 80);                              // 화면 왼쪽 밖
-  var xR     = rR.left  + rR.width  / 2 - dR.left;          // R 가로 정중앙
-  var xO1    = o1R.left + o1R.width / 2 - dR.left;          // o1 가로 정중앙
-  var xO2    = o2R.left + o2R.width / 2 - dR.left;          // o2 가로 정중앙
+  var xR     = rR.left  + rR.width  * 0.38 - dR.left;       // R 중앙 약간 왼쪽
+  var xO1    = o1R.left + o1R.width * 0.38 - dR.left;       // o1 중앙 약간 왼쪽
+  var xO2    = o2R.left + o2R.width * 0.38 - dR.left;       // o2 중앙 약간 왼쪽
   // 최종 X = 0 (dot의 자연 위치)
 
   // 각 글자 중간이 피크 X
@@ -137,10 +155,11 @@ window.addEventListener('load', function () {
   var tO2  = (xO2  - startX) / span;
   var tP3  = (xP3  - startX) / span;
 
-  // ── Y 좌표: dot의 바닥이 각 글자 꼭대기에 닿도록 ──
-  var yR   = rR.top  - dR.bottom;   // 음수: R 위 → 높이 다름
-  var yO1  = o1R.top - dR.bottom;   // 음수: o1 위 (낮음)
-  var yO2  = o2R.top - dR.bottom;   // 음수: o2 위 (낮음)
+  // ── Y 좌표: 글자 꼭대기보다 25px 더 낮게 착지 ──
+  var sink = 25;
+  var yR   = rR.top  - dR.bottom + sink;
+  var yO1  = o1R.top - dR.bottom + sink;
+  var yO2  = o2R.top - dR.bottom + sink;
   // 최종 Y = 0
 
   var extra = 55;                    // 글자 위에서 더 튀어오르는 높이
@@ -155,6 +174,15 @@ window.addEventListener('load', function () {
     { transform: 'translateX(' + startX + 'px)' },
     { transform: 'translateX(0px)' }
   ], { duration: DUR, delay: DEL, fill: 'both', easing: 'linear' });
+
+  // 공 줄무늬 회전 (굴러오는 시각 효과)
+  var ball = dot.querySelector('.dot-ball');
+  if (ball) {
+    ball.animate([
+      { transform: 'translateX(-50%) rotate(0deg)' },
+      { transform: 'translateX(-50%) rotate(-1080deg)' }
+    ], { duration: DUR, delay: DEL, fill: 'both', easing: 'linear' });
+  }
 
   // Y 애니메이션: dot에 포물선 (ease-out 올라가기 / ease-in 내려오기)
   dot.animate([
