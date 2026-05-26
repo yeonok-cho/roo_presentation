@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Roo — 사용법 & 팁</title>
+  <title>Roo — 설치</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
   <header class="topbar">
     <div class="topbar-brand"><div class="brand-dot">R</div> Roo 소개</div>
     <div class="topbar-progress-wrap">
-      <div class="progress-label"><span id="cur"></span> / 10</div>
+      <div class="progress-label"><span id="cur"></span> / 11</div>
       <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog"></div></div>
     </div>
     <div class="topbar-nav">
@@ -23,88 +23,58 @@
     <div class="slide">
       <div class="slide-inner">
 
-        <div class="slide-num">08 / 10 &nbsp;·&nbsp; 사용법 & 팁</div>
-        <h1 class="slide-title">처음 5분 — 이것만 알면 됩니다</h1>
+        <div class="slide-num">08 / 11 &nbsp;&middot;&nbsp; 설치</div>
+        <h1 class="slide-title">Roo 시작하기 — 4단계면 충분합니다</h1>
+        <p class="slide-sub">설치 완료까지 약 10분. 한 번만 하면 됩니다.</p>
 
-        <div class="usage-flow" style="margin-bottom:14px;">
-          <div class="usage-step">
-            <span class="usage-step-icon">💬</span>
-            <div class="usage-step-num">1</div>
-            <div class="usage-step-text">사이드바 Roo 아이콘 클릭</div>
+        <div class="install-steps">
+          <div class="install-step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <div class="step-title">VS Code 설치</div>
+              <div class="step-desc">
+                <a href="https://code.visualstudio.com" target="_blank">code.visualstudio.com</a> 에서 무료로 다운로드합니다.<br>
+                전 세계 개발자의 73%가 쓰는 코드 편집기로, 설치 파일을 실행하면 됩니다.
+              </div>
+              <span class="step-badge">무료</span>
+            </div>
           </div>
-          <div class="usage-step">
-            <span class="usage-step-icon">✍️</span>
-            <div class="usage-step-num">2</div>
-            <div class="usage-step-text">자연어로 요청 입력</div>
+          <div class="install-step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <div class="step-title">Extensions 탭 열기</div>
+              <div class="step-desc">
+                VS Code 실행 후 <span class="kbd">Ctrl+Shift+X</span> (Mac: <span class="kbd">Cmd+Shift+X</span>)를 누르면 확장 프로그램 탭이 열립니다.<br>
+                앱스토어처럼 필요한 도구를 검색해서 설치하는 공간입니다.
+              </div>
+            </div>
           </div>
-          <div class="usage-step">
-            <span class="usage-step-icon">👀</span>
-            <div class="usage-step-num">3</div>
-            <div class="usage-step-text">변경사항 미리보기 확인</div>
+          <div class="install-step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <div class="step-title">"Roo Code" 검색 후 설치</div>
+              <div class="step-desc">
+                검색창에 <span class="kbd">Roo Code</span> 입력 후 Install 버튼 클릭.<br>
+                설치 완료까지 1분 이내입니다.
+              </div>
+              <span class="step-badge">오픈소스</span>
+            </div>
           </div>
-          <div class="usage-step">
-            <span class="usage-step-icon">✅</span>
-            <div class="usage-step-num">4</div>
-            <div class="usage-step-text">Approve / Deny 선택</div>
+          <div class="install-step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <div class="step-title">API 키 입력 — 사내 API 사용</div>
+              <div class="step-desc">
+                사내 API를 사용합니다 → <strong>토큰 무제한, 별도 비용 없음</strong><br>
+                설정 방법: <span class="kbd">go/ums</span> 에서 키 발급 후 Roo 설정 화면에 붙여넣기
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="card" style="margin-bottom:14px;">
-          <div class="card-label">예시</div>
-          <div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="display:flex;align-items:flex-start;gap:10px;">
-              <span style="font-size:.72rem;font-weight:700;background:var(--primary-bg);border:1px solid var(--primary-br);color:var(--primary);padding:3px 8px;border-radius:99px;flex-shrink:0;white-space:nowrap;">요청</span>
-              <span style="font-size:.83rem;">"이 데이터 분석해줘"</span>
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:10px;">
-              <span style="font-size:.72rem;font-weight:700;background:var(--green-bg);border:1px solid var(--green-br);color:var(--green);padding:3px 8px;border-radius:99px;flex-shrink:0;white-space:nowrap;">결과</span>
-              <span style="font-size:.83rem;color:var(--muted);">파일 자동 분석 → 기초 통계랑 산출 코드 작성 → 통계량 제공 → Approve 클릭 → 코드 및 결과 저장 완료</span>
-            </div>
-          </div>
+        <div class="info-box">
+          💡 <strong>팁:</strong> 설치 중 오류가 생기면 편하게 문의해 주세요. 함께 해결합니다.
         </div>
-
-        <div class="card-label" style="margin-bottom:8px;">모드 소개 <span style="font-size:.7rem;font-weight:400;color:var(--muted);">— 카드를 클릭해 자세히 보기</span></div>
-        <div class="mode-grid" id="modeGrid">
-          <div class="mode-card" onclick="toggleMode(this)">
-            <div class="mode-card-row">
-              <span class="mode-card-emoji">💻</span>
-              <span class="mode-card-name">Code 모드</span>
-              <span class="mode-badge">기본 모드</span>
-            </div>
-            <div class="mode-card-detail">파일 직접 수정·터미널 실행. 대부분의 코딩 작업에서 사용</div>
-            <div class="mode-card-shrunk-label">Code</div>
-          </div>
-          <div class="mode-card" onclick="toggleMode(this)">
-            <div class="mode-card-row">
-              <span class="mode-card-emoji">🏗️</span>
-              <span class="mode-card-name">Architect 모드</span>
-              <span class="mode-badge">설계 전용</span>
-            </div>
-            <div class="mode-card-detail">코드 수정 없이 전체 구조 설계. 큰 그림을 잡을 때 사용</div>
-            <div class="mode-card-shrunk-label">Arch</div>
-          </div>
-          <div class="mode-card" onclick="toggleMode(this)">
-            <div class="mode-card-row">
-              <span class="mode-card-emoji">💬</span>
-              <span class="mode-card-name">Ask 모드</span>
-              <span class="mode-badge">읽기 전용</span>
-            </div>
-            <div class="mode-card-detail">코드 수정 없이 질문·설명만. 이해가 필요할 때 적합</div>
-            <div class="mode-card-shrunk-label">Ask</div>
-          </div>
-        </div>
-
-        <div class="card-label" style="margin-bottom:8px;">실전 팁</div>
-        <button class="tips-trigger" onclick="openTips()">
-          <div class="tips-trigger-left">
-            <span class="tips-trigger-icon">📌</span>
-            <div>
-              <div class="tips-trigger-title">  이렇게 사용해 보세요!</div>
-              <div class="tips-trigger-sub">구체적 요청 · @파일명 · 단계 분리 · 커스텀 모드 · 안전하게 시도</div>
-            </div>
-          </div>
-          <span class="tips-trigger-cta">전체 보기 →</span>
-        </button>
 
       </div>
     </div>
@@ -112,65 +82,7 @@
   <footer class="bottombar" id="dots"></footer>
   <button class="paw-btn" id="pawBtn" onclick="goto(1)" title="처음으로 ↩">🏠</button>
 </div>
-
-<div class="tips-overlay" id="tipsOverlay">
-  <div class="tips-overlay-header">
-    <div class="tips-overlay-title">📌 이렇게 사용해 보세요! </div>
-    <button class="tips-close-btn" onclick="closeTips()">✕ 닫기</button>
-  </div>
-  <div class="tips-overlay-body">
-    <div class="tip-full">
-      <div class="tip-full-head"><span class="tip-star">★</span><span class="tip-full-title">구체적으로 요청하기</span></div>
-      <div class="tip-examples">
-        <div class="tip-ex"><span class="tip-ex-bad">✗</span><span>"코드 고쳐줘"</span></div>
-        <div class="tip-ex"><span class="tip-ex-good">✓</span><span>"3번째 줄에서 나는 TypeError: NoneType 오류를 고쳐줘"</span></div>
-      </div>
-    </div>
-    <div class="tip-full">
-      <div class="tip-full-head"><span class="tip-star">★★</span><span class="tip-full-title">@파일명으로 컨텍스트 잡기 (가장 중요)</span></div>
-      <div class="tip-examples">
-        <div class="tip-ex"><span class="tip-ex-bad">✗</span><span>"함수 수정해줘" (어떤 파일인지 모름)</span></div>
-        <div class="tip-ex"><span class="tip-ex-good">✓</span><span>"@utils.py 안에 있는 parse_date 함수 수정해줘"</span></div>
-      </div>
-    </div>
-    <div class="tip-full">
-      <div class="tip-full-head"><span class="tip-full-title">단계별로 나누기</span></div>
-      <div class="tip-examples">
-        <div class="tip-ex"><span class="tip-ex-bad">✗</span><span>"전체 프로젝트 리팩토링해줘" (너무 광범위)</span></div>
-        <div class="tip-ex"><span class="tip-ex-good">✓</span><span>"먼저 data_loader.py만 정리해줘, 그다음 model.py 할게"</span></div>
-      </div>
-    </div>
-    <div class="tip-full">
-      <div class="tip-full-head"><span class="tip-full-title">커스텀 모드 만들기</span></div>
-      <div class="tip-plain">자주 쓰는 작업 스타일을 모드로 저장할 수 있습니다.<br>예: "우리 팀 코딩 컨벤션 적용 모드" — 매번 설명 없이 바로 그 스타일로 작업합니다.</div>
-    </div>
-    <div class="tip-full">
-      <div class="tip-full-head"><span class="tip-full-title">실수해도 괜찮다 ✅</span></div>
-      <div class="tip-plain" style="color:var(--green);font-weight:600;">Approve 전엔 아무것도 바뀌지 않습니다. 미리보기를 보고 마음에 안 들면 Deny하면 됩니다.</div>
-    </div>
-  </div>
-</div>
-
-<script>const SLIDE = 8; const TOTAL = 10;</script>
+<script>const SLIDE = 8; const TOTAL = 11;</script>
 <script src="nav.js"></script>
-<script>
-function toggleMode(card) {
-  var cards = Array.from(card.closest('.mode-grid').querySelectorAll('.mode-card'));
-  var wasActive = card.classList.contains('active');
-  cards.forEach(function(c) { c.classList.remove('active', 'shrunk'); });
-  if (!wasActive) {
-    card.classList.add('active');
-    cards.filter(function(c) { return c !== card; }).forEach(function(c) { c.classList.add('shrunk'); });
-  }
-}
-function openTips() {
-  document.getElementById('tipsOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeTips() {
-  document.getElementById('tipsOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-</script>
 </body>
 </html>

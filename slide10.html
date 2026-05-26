@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Roo — 핵심 정리</title>
+  <title>Roo — 시나리오</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
   <header class="topbar">
     <div class="topbar-brand"><div class="brand-dot">R</div> Roo 소개</div>
     <div class="topbar-progress-wrap">
-      <div class="progress-label"><span id="cur"></span> / 10</div>
+      <div class="progress-label"><span id="cur"></span> / 11</div>
       <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog"></div></div>
     </div>
     <div class="topbar-nav">
@@ -23,56 +23,61 @@
     <div class="slide">
       <div class="slide-inner">
 
-        <div class="slide-num">10 / 10 &nbsp;·&nbsp; 정리</div>
-        <h1 class="slide-title">핵심 3단어: 대화 → 실행 → 완성</h1>
+        <div class="slide-num">10 / 11 &nbsp;&middot;&nbsp; 시나리오</div>
+        <h1 class="slide-title">이런 상황에서 써보세요</h1>
+        <p class="slide-sub">실제 업무 시나리오별 활용법입니다.</p>
 
-        <div class="checklist">
-          <div class="check-item"><div class="check-icon">✓</div><div class="check-text">LLM은 이미 우리 모두가 쓰는 기술입니다</div></div>
-          <div class="check-item"><div class="check-icon">✓</div><div class="check-text">ChatGPT·Claude는 대화 도구, Roo는 행동 도구입니다</div></div>
-          <div class="check-item"><div class="check-icon">✓</div><div class="check-text">파일 복붙 없이 프로젝트 전체를 직접 수정합니다</div></div>
-          <div class="check-item"><div class="check-icon">✓</div><div class="check-text">Approve 전엔 아무것도 바뀌지 않아 안전합니다</div></div>
-          <div class="check-item"><div class="check-icon">✓</div><div class="check-text">사내 API로 비용 걱정 없이 바로 시작할 수 있습니다</div></div>
+        <div class="scenario-list">
+          <div class="scenario">
+            <div class="scenario-head">
+              <div class="scenario-icon">📊</div>
+              <div class="scenario-label">시나리오 A — 데이터 분석가</div>
+            </div>
+            <div class="scenario-quote">"이 CSV 파일 읽어서 월별 매출 합계 뽑는 코드 만들어줘"</div>
+            <div class="scenario-body">pandas를 모르더라도 요청만 하면 코드를 작성하고 실행까지 합니다. 결과 확인 후 "그래프도 그려줘"로 이어가면 됩니다.</div>
+            <div class="time-badge">
+              <span class="time-before">기존: 구글 검색 + 스택오버플로우 30분</span>
+              <span class="time-arrow">→</span>
+              <span class="time-after">Roo: 3분</span>
+            </div>
+          </div>
+
+          <div class="scenario">
+            <div class="scenario-head">
+              <div class="scenario-icon">📝</div>
+              <div class="scenario-label">시나리오 B — 문서 자동 작성</div>
+            </div>
+            <div class="scenario-quote">"이 함수들 보고 API 명세서 마크다운으로 만들어줘"</div>
+            <div class="scenario-body">코드 파일을 직접 읽고 함수 설명, 파라미터, 반환값을 자동으로 문서화합니다.</div>
+            <div class="time-badge">
+              <span class="time-before">기존: 수작업 2시간</span>
+              <span class="time-arrow">→</span>
+              <span class="time-after">Roo: 10분</span>
+            </div>
+          </div>
+
+          <div class="scenario">
+            <div class="scenario-head">
+              <div class="scenario-icon">🐛</div>
+              <div class="scenario-label">시나리오 C — 디버깅</div>
+            </div>
+            <div class="scenario-quote">"테스트 돌렸더니 이 오류 났어. 원인 찾아서 고쳐줘"</div>
+            <div class="scenario-body">오류 메시지를 붙여넣으면 관련 파일을 전부 뒤져 원인을 찾고 수정합니다. 터미널에서 테스트 재실행까지 자동으로 합니다.</div>
+            <div class="time-badge">
+              <span class="time-before">기존: 원인 파악 1시간</span>
+              <span class="time-arrow">→</span>
+              <span class="time-after">Roo: 10~15분</span>
+            </div>
+          </div>
         </div>
 
-        <div class="card-label" style="margin-bottom:8px;">교육 로드맵</div>
-        <div class="tbl-wrap" style="margin-bottom:16px;">
-          <table class="roadmap-table">
-            <thead>
-              <tr><th></th><th>대상 및 일정</th><th>내용</th></tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>기본교육</td>
-                <td>누구나/1일</td>
-                <td>LLM 개념 + Roo 설치 + 기본 사용법 실습</td>
-              </tr>
-              <tr>
-                <td>심화교육</td>
-                <td>과제 실행자/2일</td>
-                <td>실제 프로젝트에 Roo 적용</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="card-label" style="margin-bottom:8px;">참고 자료</div>
-        <div class="ref-row">
-          <div class="ref-item">📄 <strong>공식 문서:</strong> <span style="color:var(--muted);font-style:italic;">URL 추가 예정</span></div>
-          <div class="ref-item">🏢 <strong>사내 설치 가이드:</strong> <span style="color:var(--muted);font-style:italic;">URL 추가 예정</span></div>
-          <div class="ref-item">🔑 <strong>API 키 발급:</strong> <span class="kbd">go/ums</span></div>
-        </div>
-
-        <div class="cta-box">
-          <div class="cta-main"> 🙋 궁금한 점은 자유롭게 질문해 주세요.</div>
-        </div>
-    
       </div>
     </div>
   </div>
   <footer class="bottombar" id="dots"></footer>
   <button class="paw-btn" id="pawBtn" onclick="goto(1)" title="처음으로 ↩">🏠</button>
 </div>
-<script>const SLIDE = 10; const TOTAL = 10;</script>
+<script>const SLIDE = 10; const TOTAL = 11;</script>
 <script src="nav.js"></script>
 </body>
 </html>

@@ -3,19 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Roo — 선택 기준</title>
+  <title>Roo — Roo 소개</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .tbl-wrap { overflow-x: auto; }
-    .cmp-table { min-width: 660px; white-space: nowrap; }
-  </style>
 </head>
 <body>
 <div class="pres">
   <header class="topbar">
     <div class="topbar-brand"><div class="brand-dot">R</div> Roo 소개</div>
     <div class="topbar-progress-wrap">
-      <div class="progress-label"><span id="cur"></span> / 10</div>
+      <div class="progress-label"><span id="cur"></span> / 11</div>
       <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog"></div></div>
     </div>
     <div class="topbar-nav">
@@ -27,49 +23,45 @@
     <div class="slide">
       <div class="slide-inner">
 
-        <div class="slide-num">06 / 10 &nbsp;·&nbsp; 선택 기준</div>
-        <h1 class="slide-title">상황에 따라 골라 쓰세요</h1>
-        <p class="slide-sub">빠른 정리에는 가벼운 AI로 충분하고, 실제 결과물 생성에는 실행 가능한 AI가 필요합니다. </p>
+        <div class="slide-num">06 / 11 &nbsp;&middot;&nbsp; Roo 소개</div>
+        <h1 class="slide-title">Roo — AI가 직접 일하는 코딩 에이전트</h1>
 
-        <div class="tbl-wrap" style="margin-bottom:14px;">
-          <table class="cmp-table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>🌐 ChatGPT / Claude 웹</th>
-                <th class="roo-col">🤖 Code Agent</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="white-space:normal;vertical-align:middle;">이럴 때<br>좋아요</td>
-                <td>빠른 질문·답변 / 문서 요약 / 아이디어 브레인스토밍 / 이미지 첨부</td>
-                <td class="roo-col">실제 코드 작업 / 파일 수정 자동화 / 프로젝트 전체 리팩토링</td>
-              </tr>
-              <tr>
-                <td>장점</td>
-                <td>설치 없이 바로 / 어느 기기에서나 / 초보자도 5분 안에 시작</td>
-                <td class="roo-col">파일 직접 읽기·쓰기 / 터미널 자동 실행 / 프로젝트 전체 이해</td>
-              </tr>
-              <tr>
-                <td>단점</td>
-                <td>복붙 반복 / 터미널은 직접 / 코드 외부 전송</td>
-                <td class="roo-col">VS Code 초기 설치 필요 / API 키 발급 과정 있음 / 모바일 불편</td>
-              </tr>
-              <tr>
-                <td>사내TOOL</td>
-                <td>DSAssistant</td>
-                <td class="roo-col"><strong>CodeMate, OpenCode, Roo</strong></td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="analogy-box">
+          ChatGPT가 <strong>"옆에서 조언해주는 멘토"</strong>라면,<br>
+          Roo는 <strong>"실제로 키보드를 두드리는 주니어 개발자"</strong>입니다.
         </div>
 
-        <div class="select-guide">
-          <div class="select-guide-title">선택 가이드</div>
-          <div class="select-row"><span class="select-arrow">→</span><span>빠른 질문, 글쓰기, 요약이 필요하다면 → <strong>ChatGPT / Claude 웹</strong></span></div>
-          <div class="select-row"><span class="select-arrow">→</span><span>파일을 열고 실제로 코드를 고쳐야 한다면 → <strong>Roo</strong></span></div>
-          <div class="select-row"><span class="select-arrow">→</span><span>LLM Chat을 통해 최적 경로를 설계하고, Code Agent로 실제로 그 길을 따라 목적지까지.</span></div>
+        <div class="grid-3">
+          <div class="feature-card">
+            <div class="feature-icon">🗣️</div>
+            <div class="feature-title">자연어 대화 (한국어 가능)</div>
+            <div class="feature-desc">"이 함수 이름 좀 더 명확하게 바꿔줘"처럼 일상 언어로 요청하면 됩니다. 코딩 문법을 몰라도 대화가 가능합니다.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📂</div>
+            <div class="feature-title">로컬 파일 직접 수정</div>
+            <div class="feature-desc">파일을 복사해서 붙여넣을 필요 없이, Roo가 내 PC의 파일을 직접 열고 수정합니다. 저장까지 해줍니다.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-title">터미널 명령 자동 실행</div>
+            <div class="feature-desc">"테스트 돌려줘", "패키지 설치해줘" 요청을 받으면 터미널 명령어를 직접 입력하고 실행합니다. 결과도 읽고 이어서 작업합니다.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🗂️</div>
+            <div class="feature-title">멀티 파일 작업</div>
+            <div class="feature-desc">파일 하나가 아니라 프로젝트 전체를 이해합니다. A 파일을 바꾸면 연결된 B, C 파일도 함께 수정합니다.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <div class="feature-title">커스텀 모드</div>
+            <div class="feature-desc">팀 코딩 컨벤션, 문서 작성 스타일 등 자주 쓰는 작업 방식을 모드로 저장합니다. 매번 설명 없이 바로 그 스타일로 작업을 시작할 수 있습니다.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <div class="feature-title">로컬 우선 보안</div>
+            <div class="feature-desc">내 코드가 외부 서버로 전송되지 않도록 로컬 모델과 연결할 수 있습니다. 사내 보안 정책에 맞게 운용 가능합니다.</div>
+          </div>
         </div>
 
       </div>
@@ -78,7 +70,7 @@
   <footer class="bottombar" id="dots"></footer>
   <button class="paw-btn" id="pawBtn" onclick="goto(1)" title="처음으로 ↩">🏠</button>
 </div>
-<script>const SLIDE = 6; const TOTAL = 10;</script>
+<script>const SLIDE = 6; const TOTAL = 11;</script>
 <script src="nav.js"></script>
 </body>
 </html>
