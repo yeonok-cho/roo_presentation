@@ -110,14 +110,19 @@
     }
     .tab-btn.active { background: var(--primary); color: #fff; }
     .tab-btn:hover:not(.active) { background: var(--border); color: var(--text); }
-    .tab-pane { display: none; }
-    .tab-pane.active { display: block; }
     .bh-copilot { background: #0078D4; }
 
-    /* ARR 탭 growth-list만 스크롤 (MAU 높이에 맞춤) */
+    /* 두 탭 모두 고정 높이 → 하단 박스 고정 */
+    .tab-pane { display: none; }
+    .tab-pane.active { display: flex; flex-direction: column; height: 370px; }
+    .tab-pane .chart-note,
+    .tab-pane .src-list { flex-shrink: 0; }
+
+    /* ARR growth-list: 남은 공간 채우고 스크롤 */
     #tab-arr .growth-list {
-      max-height: 268px;
+      flex: 1;
       overflow-y: auto;
+      min-height: 0;
       padding-right: 6px;
     }
     #tab-arr .growth-list::-webkit-scrollbar { width: 4px; }
