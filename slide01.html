@@ -137,8 +137,8 @@ window.addEventListener('load', function () {
   // 착지 X: 각 글자 가로 중앙 (dot 자연 위치 기준)
   var startX = -(dR.left + 80);
   var xR  = rR.left  + rR.width  / 2 - dR.left;   // R 중앙
-  var xO1 = o1R.left + o1R.width / 2 - dR.left + 8;   // 첫 번째 o 중앙 (약간 오른쪽)
-  var xO2 = o2R.left + o2R.width / 2 - dR.left + 8;   // 마지막 o 중앙 (약간 오른쪽)
+  var xO1 = o1R.left + o1R.width / 2 - dR.left;   // 첫 번째 o 중앙
+  var xO2 = o2R.left + o2R.width / 2 - dR.left;   // 마지막 o 중앙
   // 최종 착지 X = 0
 
   // 4번째 착지 X: o2와 "." 사이 (o2에 더 가깝게)
@@ -185,7 +185,7 @@ window.addEventListener('load', function () {
     { transform: 'translateY(0px)',                opacity: 1, offset: Math.min(tR*0.4, 0.05), easing: 'linear'   },
     { transform: 'translateY(' + LY + 'px)',       opacity: 1, offset: tR,   easing: 'ease-out' }, // 1착 R
     { transform: 'translateY(' + (B - 20) + 'px)',opacity: 1, offset: tP1,  easing: 'ease-in'  },
-    { transform: 'translateY(' + LY + 'px)',       opacity: 1, offset: tO1,  easing: 'ease-out' }, // 2착 o1
+    { transform: 'translateY(' + (LY - 20) + 'px)', opacity: 1, offset: tO1,  easing: 'ease-out' }, // 2착 o1
     { transform: 'translateY(' + (B + LY) + 'px)',opacity: 1, offset: tP2,  easing: 'ease-in'  },
     { transform: 'translateY(' + LY + 'px)',       opacity: 1, offset: tO2,  easing: 'ease-out' }, // 3착 o2
     { transform: 'translateY(' + (B + LY) + 'px)',opacity: 1, offset: tP3,  easing: 'ease-in'  },
