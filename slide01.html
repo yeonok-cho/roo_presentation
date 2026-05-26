@@ -15,30 +15,8 @@
       from { transform: translateX(-60px); opacity: 0; }
       to   { transform: translateX(0);     opacity: 1; }
     }
-
-    /* 주황 점: 420px 구간을 균등 3등분해 튀면서 최종 위치에 착지 */
-    .hl-dot {
-      display: inline-block;
-      animation: dotBounce 2.8s linear both;
-      animation-delay: 1.3s;
-    }
-    @keyframes dotBounce {
-      0%    { transform: translateX(-420px) translateY(0) rotate(-540deg); opacity: 0; }
-      8%    { opacity: 1; }
-      /* 1번째 호 — 정점 */
-      16.5% { transform: translateX(-315px) translateY(-42px) rotate(-360deg); animation-timing-function: ease-in; }
-      /* 1번째 착지 */
-      33%   { transform: translateX(-210px) translateY(0)     rotate(-180deg); animation-timing-function: ease-out; }
-      /* 2번째 호 — 정점 */
-      49.5% { transform: translateX(-105px) translateY(-42px) rotate(-90deg);  animation-timing-function: ease-in; }
-      /* 2번째 착지 */
-      66%   { transform: translateX(-0px)   translateY(0)     rotate(0deg);    animation-timing-function: ease-out; }
-      /* 3번째 호 — 정점 (작게) */
-      79%   { transform: translateX(0)      translateY(-18px) rotate(0deg);    animation-timing-function: ease-in; }
-      /* 최종 착지 */
-      91%   { transform: translateX(0)      translateY(0)     rotate(0deg); }
-      100%  { transform: translateX(0)      translateY(0)     rotate(0deg); }
-    }
+    /* 점은 JS가 제어 — 초기 숨김 */
+    .hl-dot { display: inline-block; opacity: 0; }
   </style>
 </head>
 <body>
@@ -122,6 +100,60 @@ function revealHero() {
   document.getElementById('heroDesc2').classList.add('revealed');
   document.getElementById('heroPresenter').classList.add('revealed');
 }
+
+// 주황 점: 각 글자 위를 한 번씩 튕겨서 최종 위치로 오는 애니메이션
+window.addEventListener('load', function () {
+  var dot = document.querySelector('.hl-dot');
+  var rEl  = document.querySelector('.hl-0');
+  var o1El = document.querySelector('.hl-1');
+  var o2El = document.querySelector('.hl-2');
+  if (!dot || !rEl || !o1El || !o2El) return;
+
+  // 마지막 글자(hl-2)가 다 나온 뒤 0.4초 뒤에 시작
+  setTimeout(function () {
+    var dR  = dot.getBoundingClientRect();
+    var rR  = rEl.getBoundingClientRect();
+    var o1R = o1El.getBoundingClientRect();
+    var o2R = o2El.getBoundingClientRect();
+
+    // X: 점의 자연 위치 기준 상대값 (음수 = 왼쪽)
+    var startX         = -(dR.left + 120);                       // 화면 왼쪽 밖
+    var landRightOfR   = (rR.right  + o1R.left) / 2 - dR.left;  // R과 o1 사이
+    var landRightOfO1  = (o1R.right + o2R.left) / 2 - dR.left;  // o1과 o2 사이
+
+    // 호(弧) 정점 X: 각 글자 중심
+    var peakX_R  = rR.left  + rR.width  / 2 - dR.left;
+    var peakX_o1 = o1R.left + o1R.width / 2 - dR.left;
+    var peakX_o2 = o2R.left + o2R.width / 2 - dR.left;
+
+    // 호 정점 Y: 글자 상단보다 15px 위 (글자 높이가 다르면 자동 반영)
+    var peakY_R  = rR.top  - dR.bottom - 15;
+    var peakY_o1 = o1R.top - dR.bottom - 15;
+    var peakY_o2 = o2R.top - dR.bottom - 15;
+
+    var T = 'translateX(%xpx) translateY(%ypx)'
+      .replace ? function(x, y) {
+        return 'translateX(' + x + 'px) translateY(' + y + 'px)';
+      } : null;
+    function tf(x, y) { return 'translateX(' + x + 'px) translateY(' + y + 'px)'; }
+
+    var keyframes = [
+      { transform: tf(startX, 0),          opacity: 0, offset: 0,     easing: 'ease-out' },
+      { transform: tf(startX, 0),          opacity: 1, offset: 0.04,  easing: 'ease-out' },
+      // R 위를 넘어 →
+      { transform: tf(peakX_R,  peakY_R),  opacity: 1, offset: 1/6,   easing: 'ease-in'  },
+      { transform: tf(landRightOfR,  0),   opacity: 1, offset: 2/6,   easing: 'ease-out' },
+      // o1 위를 넘어 →
+      { transform: tf(peakX_o1, peakY_o1), opacity: 1, offset: 3/6,   easing: 'ease-in'  },
+      { transform: tf(landRightOfO1, 0),   opacity: 1, offset: 4/6,   easing: 'ease-out' },
+      // o2 위를 넘어 → 최종 착지
+      { transform: tf(peakX_o2, peakY_o2), opacity: 1, offset: 5/6,   easing: 'ease-in'  },
+      { transform: tf(0, 0),               opacity: 1, offset: 1 },
+    ];
+
+    dot.animate(keyframes, { duration: 2800, fill: 'both', easing: 'linear' });
+  }, 1600 + 400); // 글자 등장 완료(1.6s) + 여유(0.4s)
+});
 </script>
 </body>
 </html>
