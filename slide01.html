@@ -120,16 +120,43 @@ function revealHero() {
   document.getElementById('heroPresenter').classList.add('revealed');
 }
 
-// 주황 점: 균일 간격·균일 높이로 4번 튀며 왼쪽에서 최종 위치로
+// 주황 점: R·o·o 중앙에 착지, 균일 높이로 튀며 최종 위치로
 window.addEventListener('load', function () {
   var carrier = document.querySelector('.dot-carrier');
   var dot     = document.querySelector('.hl-dot');
-  if (!carrier || !dot) return;
+  var rEl     = document.querySelector('.hl-0');
+  var o1El    = document.querySelector('.hl-1');
+  var o2El    = document.querySelector('.hl-2');
+  if (!carrier || !dot || !rEl || !o1El || !o2El) return;
 
-  var dR     = dot.getBoundingClientRect();
-  var startX = -(dR.left + 60);  // 화면 왼쪽 밖
-  var B      = -55;              // 바운스 높이(px, 위로)
-  var DUR    = 3400, DEL = 1800;
+  var dR  = dot.getBoundingClientRect();
+  var rR  = rEl.getBoundingClientRect();
+  var o1R = o1El.getBoundingClientRect();
+  var o2R = o2El.getBoundingClientRect();
+
+  // 착지 X: 각 글자 가로 중앙 (dot 자연 위치 기준)
+  var startX = -(dR.left + 80);
+  var xR  = rR.left  + rR.width  / 2 - dR.left;   // R 중앙
+  var xO1 = o1R.left + o1R.width / 2 - dR.left;   // 첫 번째 o 중앙
+  var xO2 = o2R.left + o2R.width / 2 - dR.left;   // 마지막 o 중앙
+  // 최종 착지 X = 0
+
+  // 피크 X: 인접 착지점 사이 중간
+  var xP1 = (xR  + xO1) / 2;
+  var xP2 = (xO1 + xO2) / 2;
+  var xP3 = (xO2 + 0  ) / 2;
+
+  // 등속 기준 타이밍
+  var span = -startX;
+  var tR  = (xR  - startX) / span;
+  var tP1 = (xP1 - startX) / span;
+  var tO1 = (xO1 - startX) / span;
+  var tP2 = (xP2 - startX) / span;
+  var tO2 = (xO2 - startX) / span;
+  var tP3 = (xP3 - startX) / span;
+
+  var B   = -60;   // 균일 바운스 높이(px, 음수 = 위)
+  var DUR = 3400, DEL = 1800;
 
   // X: 등속 수평 이동
   carrier.animate([
@@ -141,23 +168,22 @@ window.addEventListener('load', function () {
   var ball = dot.querySelector('.dot-ball');
   if (ball) {
     ball.animate([
-      { transform: 'translateX(-50%) rotate(0deg)'    },
+      { transform: 'translateX(-50%) rotate(0deg)'     },
       { transform: 'translateX(-50%) rotate(-1080deg)' }
     ], { duration: DUR, delay: DEL, fill: 'both', easing: 'linear' });
   }
 
-  // Y: 4번 균일 바운스 (각 25% 구간, 피크는 구간 정중앙)
+  // Y: 각 글자 중앙에서 착지, 균일 높이 포물선
   dot.animate([
-    { transform: 'translateY(0px)', opacity: 0, offset: 0,     easing: 'ease-out' },
-    { transform: 'translateY(0px)', opacity: 1, offset: 0.05,  easing: 'ease-out' },
-    { transform: 'translateY(' + B + 'px)', opacity: 1, offset: 0.125, easing: 'ease-in'  },
-    { transform: 'translateY(0px)', opacity: 1, offset: 0.25,  easing: 'ease-out' },
-    { transform: 'translateY(' + B + 'px)', opacity: 1, offset: 0.375, easing: 'ease-in'  },
-    { transform: 'translateY(0px)', opacity: 1, offset: 0.5,   easing: 'ease-out' },
-    { transform: 'translateY(' + B + 'px)', opacity: 1, offset: 0.625, easing: 'ease-in'  },
-    { transform: 'translateY(0px)', opacity: 1, offset: 0.75,  easing: 'ease-out' },
-    { transform: 'translateY(' + B + 'px)', opacity: 1, offset: 0.875, easing: 'ease-in'  },
-    { transform: 'translateY(0px)', opacity: 1, offset: 1 }
+    { transform: 'translateY(0px)',        opacity: 0, offset: 0,                  easing: 'linear'   },
+    { transform: 'translateY(0px)',        opacity: 1, offset: Math.min(tR*0.4, 0.06), easing: 'linear' },
+    { transform: 'translateY(0px)',        opacity: 1, offset: tR,  easing: 'ease-out' },
+    { transform: 'translateY(' + B + 'px)', opacity: 1, offset: tP1, easing: 'ease-in'  },
+    { transform: 'translateY(0px)',        opacity: 1, offset: tO1, easing: 'ease-out' },
+    { transform: 'translateY(' + B + 'px)', opacity: 1, offset: tP2, easing: 'ease-in'  },
+    { transform: 'translateY(0px)',        opacity: 1, offset: tO2, easing: 'ease-out' },
+    { transform: 'translateY(' + B + 'px)', opacity: 1, offset: tP3, easing: 'ease-in'  },
+    { transform: 'translateY(0px)',        opacity: 1, offset: 1 }
   ], { duration: DUR, delay: DEL, fill: 'both', easing: 'linear' });
 });
 </script>
