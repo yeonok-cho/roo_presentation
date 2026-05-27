@@ -91,11 +91,11 @@
         <!-- ── 탭 1: LLM 채팅 서비스 ── -->
         <div class="tab-panel active" id="tab1">
           <div class="concept-flow">
-            <div class="cf-step cf-active">💬 LLM 채팅 — 지금 여기</div>
+            <div class="cf-step cf-active">💬 1단계</div>
             <div class="cf-arrow">→</div>
-            <div class="cf-step">🔧 Tool Calling</div>
+            <div class="cf-step">🔧 2단계</div>
             <div class="cf-arrow">→</div>
-            <div class="cf-step">💻 코드 에이전트</div>
+            <div class="cf-step">💻 3단계</div>
           </div>
           <div class="tbl-wrap">
             <table class="cmp-table">
@@ -105,7 +105,7 @@
                   <th>ChatGPT</th>
                   <th>Claude</th>
                   <th>Gemini</th>
-                  <th>Copilot</th>
+                  <th>Perplexity</th>
                 </tr>
               </thead>
               <tbody>
@@ -114,14 +114,14 @@
                   <td>OpenAI</td>
                   <td>Anthropic</td>
                   <td>Google</td>
-                  <td>Microsoft</td>
+                  <td>Perplexity AI</td>
                 </tr>
                 <tr>
                   <td>대표 모델</td>
                   <td>GPT-4o</td>
                   <td>Claude 3.7</td>
                   <td>Gemini 2.0</td>
-                  <td>GPT-4o</td>
+                  <td>Sonar (자체)</td>
                 </tr>
                 <tr>
                   <td>무료 플랜</td>
@@ -142,14 +142,14 @@
                   <td>웹 · 앱</td>
                   <td>웹 · 앱</td>
                   <td>웹 · 앱</td>
-                  <td>웹 · 앱 · Windows</td>
+                  <td>웹 · 앱</td>
                 </tr>
                 <tr>
                   <td>강점</td>
                   <td>범용 · 생태계</td>
                   <td>긴 문서 · 코딩</td>
                   <td>Google 연동</td>
-                  <td>MS Office 연동</td>
+                  <td>실시간 웹 검색</td>
                 </tr>
               </tbody>
             </table>
@@ -162,11 +162,11 @@
         <!-- ── 탭 2: Tool Calling ── -->
         <div class="tab-panel" id="tab2">
           <div class="concept-flow">
-            <div class="cf-step">💬 LLM 채팅</div>
+            <div class="cf-step">💬 1단계</div>
             <div class="cf-arrow">→</div>
-            <div class="cf-step cf-active">🔧 Tool Calling — 지금 여기</div>
+            <div class="cf-step cf-active">🔧 2단계 </div>
             <div class="cf-arrow">→</div>
-            <div class="cf-step">💻 코드 에이전트</div>
+            <div class="cf-step">💻 3단계</div>
           </div>
           <div class="tbl-wrap">
             <table class="cmp-table">
@@ -176,7 +176,7 @@
                   <th>ChatGPT</th>
                   <th>Claude</th>
                   <th>Gemini</th>
-                  <th>Copilot</th>
+                  <th>Perplexity</th>
                 </tr>
               </thead>
               <tbody>
@@ -185,35 +185,35 @@
                   <td><span class="tool-pill tool-yes">✓</span></td>
                   <td><span class="tool-pill tool-yes">✓</span></td>
                   <td><span class="tool-pill tool-yes">✓</span></td>
-                  <td><span class="tool-pill tool-yes">✓ Bing</span></td>
+                  <td><span class="tool-pill tool-yes">✓ 특화</span></td>
                 </tr>
                 <tr>
                   <td>코드 실행</td>
                   <td><span class="tool-pill tool-yes">✓</span></td>
                   <td><span class="tool-pill tool-yes">✓</span></td>
                   <td><span class="tool-pill tool-yes">✓</span></td>
-                  <td><span class="tool-pill tool-part">제한적</span></td>
+                  <td><span class="tool-pill tool-no">✗</span></td>
                 </tr>
                 <tr>
                   <td>이미지 생성</td>
                   <td><span class="tool-pill tool-yes">✓ DALL-E</span></td>
                   <td><span class="tool-pill tool-no">✗</span></td>
                   <td><span class="tool-pill tool-yes">✓ Imagen</span></td>
-                  <td><span class="tool-pill tool-yes">✓ DALL-E</span></td>
+                  <td><span class="tool-pill tool-no">✗</span></td>
                 </tr>
                 <tr>
                   <td>파일 분석</td>
                   <td><span class="tool-pill tool-yes">✓</span></td>
                   <td><span class="tool-pill tool-yes">✓</span></td>
                   <td><span class="tool-pill tool-yes">✓</span></td>
-                  <td><span class="tool-pill tool-yes">✓</span></td>
+                  <td><span class="tool-pill tool-part">제한적</span></td>
                 </tr>
                 <tr>
                   <td>외부 API 연동</td>
                   <td><span class="tool-pill tool-yes">✓ GPTs</span></td>
                   <td><span class="tool-pill tool-yes">✓ MCP</span></td>
                   <td><span class="tool-pill tool-yes">✓ Extensions</span></td>
-                  <td><span class="tool-pill tool-yes">✓ Plugins</span></td>
+                  <td><span class="tool-pill tool-no">✗</span></td>
                 </tr>
                 <tr>
                   <td>컴퓨터 제어</td>
@@ -233,11 +233,11 @@
         <!-- ── 탭 3: 코드 에이전트 ── -->
         <div class="tab-panel" id="tab3">
           <div class="concept-flow">
-            <div class="cf-step">💬 LLM 채팅</div>
+            <div class="cf-step">💬 1단계</div>
             <div class="cf-arrow">→</div>
-            <div class="cf-step">🔧 Tool Calling</div>
+            <div class="cf-step">🔧 2단계</div>
             <div class="cf-arrow">→</div>
-            <div class="cf-step cf-active">💻 코드 에이전트 — 지금 여기</div>
+            <div class="cf-step cf-active">💻 3단계 </div>
           </div>
           <div class="tbl-wrap">
             <table class="cmp-table">
@@ -287,11 +287,11 @@
                   <td><span class="pill pill-green">✓</span></td>
                 </tr>
                 <tr>
-                  <td>비용</td>
-                  <td class="roo-col"><strong>사내 API</strong></td>
-                  <td>$20 / 월</td>
-                  <td>$10 / 월</td>
-                  <td>$15 / 월</td>
+                  <td>사내 이용</td>
+                  <td class="roo-col"><strong>사내 API 가능</strong></td>
+                  <td>불가능(사외 $20 / 월)</td>
+                  <td>불가능(사외 $10 / 월)</td>
+                  <td>불가능(사외 $15 / 월)</td>
                 </tr>
                 <tr>
                   <td>오픈소스</td>
