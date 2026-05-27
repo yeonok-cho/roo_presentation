@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Roo — 웹 서비스의 한계</title>
+  <title>Roo — Roo 소개</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
   <header class="topbar">
     <div class="topbar-brand"><div class="brand-dot">R</div> Roo 소개</div>
     <div class="topbar-progress-wrap">
-      <div class="progress-label"><span id="cur"></span> / 11</div>
+      <div class="progress-label"><span id="cur"></span> / 10</div>
       <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog"></div></div>
     </div>
     <div class="topbar-nav">
@@ -23,61 +23,44 @@
     <div class="slide">
       <div class="slide-inner">
 
-        <div class="slide-num">05 / 11 &nbsp;&middot;&nbsp; 웹 서비스의 한계</div>
-        <h1 class="slide-title">ChatGPT로 코딩하면 생기는 일</h1>
-        <p class="slide-sub">실제 작업 시나리오로 살펴보겠습니다.</p>
+        <div class="slide-num">05 / 10 &nbsp;·&nbsp; Roo 소개</div>
+        <h1 class="slide-title">Roo — AI가 직접 일하는 코딩 에이전트</h1>
 
-        <div class="story-box">
-          <div class="story-quote">"파이썬 스크립트 고쳐줘"라고 ChatGPT에 물어봤습니다.</div>
-          <div class="story-steps">
-            <div class="story-step">
-              <div class="story-step-num">1</div>
-              <div class="story-step-text">코드를 복사해서 붙여넣기</div>
-            </div>
-            <div class="story-step">
-              <div class="story-step-num">2</div>
-              <div class="story-step-text">답변 받기</div>
-            </div>
-            <div class="story-step">
-              <div class="story-step-num">3</div>
-              <div class="story-step-text">다시 내 파일에 복사해서 붙여넣기</div>
-            </div>
-            <div class="story-step">
-              <div class="story-step-num">4</div>
-              <div class="story-step-text">실행해보니 <em>오류 발생</em></div>
-            </div>
-            <div class="story-step">
-              <div class="story-step-num">5</div>
-              <div class="story-step-text">오류 메시지를 다시 복사해서 ChatGPT에 붙여넣기</div>
-            </div>
-            <div class="story-step">
-              <div class="story-step-num" style="background:var(--red-bg);color:var(--red);border-color:var(--red-bg);">∞</div>
-              <div class="story-step-text"><em>반복…</em></div>
-            </div>
-          </div>
+        <div class="analogy-box">
+          ChatGPT가 <strong>"옆에서 조언해주는 멘토"</strong>라면,<br>
+          Roo는 <strong>"실제로 키보드를 두드리는 주니어 개발자"</strong>입니다.
         </div>
 
         <div class="grid-3">
           <div class="feature-card">
-            <div class="feature-icon">🔁</div>
-            <div class="feature-title">복붙의 굴레</div>
-            <div class="feature-desc">코드를 올리고 → 답 받고 → 다시 파일에 넣는 과정을 매번 반복해야 합니다. 파일이 10개라면 10번 반복입니다.</div>
+            <div class="feature-icon">🗣️</div>
+            <div class="feature-title">자연어 대화 (한국어 가능)</div>
+            <div class="feature-desc">"이 함수 이름 좀 더 명확하게 바꿔줘"처럼 일상 언어로 요청하면 됩니다. 코딩 문법을 몰라도 대화가 가능합니다.</div>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🕶️</div>
-            <div class="feature-title">프로젝트 전체를 모른다</div>
-            <div class="feature-desc">웹 서비스는 지금 붙여넣은 코드만 봅니다. "다른 파일이랑 연결이 안 돼요"라는 문제는 AI가 알 수 없습니다.</div>
+            <div class="feature-icon">📂</div>
+            <div class="feature-title">로컬 파일 직접 수정</div>
+            <div class="feature-desc">파일을 복사해서 붙여넣을 필요 없이, Roo가 내 PC의 파일을 직접 열고 수정합니다. 저장까지 해줍니다.</div>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🖐️</div>
-            <div class="feature-title">실행은 내가 직접</div>
-            <div class="feature-desc">AI가 "이렇게 해보세요"라고 알려줘도, 터미널을 열어서 명령어를 치는 건 여전히 내 몫입니다.</div>
+            <div class="feature-icon">⚡</div>
+            <div class="feature-title">터미널 명령 자동 실행</div>
+            <div class="feature-desc">"테스트 돌려줘", "패키지 설치해줘" 요청을 받으면 터미널 명령어를 직접 입력하고 실행합니다. 결과도 읽고 이어서 작업합니다.</div>
           </div>
-        </div>
-
-        <div style="margin-top:14px;">
-          <div class="highlight-box">
-            💡 <strong>핵심 한 줄:</strong> 웹 AI는 훌륭한 조언자지만, 직접 일하지는 않습니다.
+          <div class="feature-card">
+            <div class="feature-icon">🗂️</div>
+            <div class="feature-title">멀티 파일 작업</div>
+            <div class="feature-desc">파일 하나가 아니라 프로젝트 전체를 이해합니다. A 파일을 바꾸면 연결된 B, C 파일도 함께 수정합니다.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <div class="feature-title">커스텀 모드</div>
+            <div class="feature-desc">팀 코딩 컨벤션, 문서 작성 스타일 등 자주 쓰는 작업 방식을 모드로 저장합니다. 매번 설명 없이 바로 그 스타일로 작업을 시작할 수 있습니다.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <div class="feature-title">로컬 우선 보안</div>
+            <div class="feature-desc">내 코드가 외부 서버로 전송되지 않도록 로컬 모델과 연결할 수 있습니다. 사내 보안 정책에 맞게 운용 가능합니다.</div>
           </div>
         </div>
 
@@ -87,7 +70,7 @@
   <footer class="bottombar" id="dots"></footer>
   <button class="paw-btn" id="pawBtn" onclick="goto(1)" title="처음으로 ↩">🏠</button>
 </div>
-<script>const SLIDE = 5; const TOTAL = 11;</script>
+<script>const SLIDE = 5; const TOTAL = 10;</script>
 <script src="nav.js"></script>
 </body>
 </html>
