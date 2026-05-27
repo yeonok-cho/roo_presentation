@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Roo — 설치</title>
+  <title>Roo — 선택 기준</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .tbl-wrap { overflow-x: auto; }
+    .cmp-table { min-width: 660px; white-space: nowrap; }
+  </style>
 </head>
 <body>
 <div class="pres">
   <header class="topbar">
     <div class="topbar-brand"><div class="brand-dot">R</div> Roo 소개</div>
     <div class="topbar-progress-wrap">
-      <div class="progress-label"><span id="cur"></span> / 10</div>
+      <div class="progress-label"><span id="cur"></span> / 11</div>
       <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog"></div></div>
     </div>
     <div class="topbar-nav">
@@ -23,57 +27,49 @@
     <div class="slide">
       <div class="slide-inner">
 
-        <div class="slide-num">07 / 10 &nbsp;·&nbsp; 설치</div>
-        <h1 class="slide-title">Roo 시작하기 (사내 설치에 맞게 수정)</h1>
-        <p class="slide-sub">설치 완료까지 약 10분. 한 번만 하면 됩니다.</p>
+        <div class="slide-num">07 / 11 &nbsp;·&nbsp; 선택 기준</div>
+        <h1 class="slide-title">상황에 따라 골라 쓰세요</h1>
+        <p class="slide-sub">빠른 정리에는 가벼운 AI로 충분하고, 실제 결과물 생성에는 실행 가능한 AI가 필요합니다. </p>
 
-        <div class="install-steps">
-          <div class="install-step">
-            <div class="step-num">1</div>
-            <div class="step-body">
-              <div class="step-title">Python 설치</div>
-              <div class="step-desc">
-                <a href="https://go/phython" target="_blank">AIPFORGE</a> 에서 <br>
-                파이썬 환경을 완성합니다. 
-              </div>
-              <span class="step-badge">사내환경반영</span>
-            </div>
-          </div>
-          <div class="install-step">
-            <div class="step-num">2</div>
-            <div class="step-body">
-              <div class="step-title">VScode설치</div>
-              <div class="step-desc">
-                <a href="https://go/vscode" target="_blank">Vscode 설치 링크</a> 에서 <br>
-                VScode 편집기를 설치합니다. 
-              </div>
-            </div>
-          </div>
-          <div class="install-step">
-            <div class="step-num">3</div>
-            <div class="step-body">
-              <div class="step-title">"Roo Code" 검색 후 설치</div>
-               <div class="step-desc">
-                <a href="https://go/Roo" target="_blank">Roo 설치 링크</a> 에서 <br>
-                Roo를 가이드에 맞게 설치합니다. 
-              </div>
-              <span class="step-badge">사내 제공</span>
-            </div>
-          </div>
-          <div class="install-step">
-            <div class="step-num">4</div>
-            <div class="step-body">
-              <div class="step-title">API 키 입력 — 사내 API 사용</div>
-              <div class="step-desc">
-                사내 API를 사용합니다 → <strong>토큰 무제한, 별도 비용 없음</strong><br>
-                설정 방법: <span class="kbd">go/ums</span> 에서 키 발급 후 Roo 설정 화면에 붙여넣기
-              </div>
-            </div>
-          </div>
+        <div class="tbl-wrap" style="margin-bottom:14px;">
+          <table class="cmp-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>🌐 ChatGPT / Claude 웹</th>
+                <th class="roo-col">🤖 Code Agent</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="white-space:normal;vertical-align:middle;">이럴 때<br>좋아요</td>
+                <td>빠른 질문·답변 / 문서 요약 / 아이디어 브레인스토밍 / 이미지 첨부</td>
+                <td class="roo-col">실제 코드 작업 / 파일 수정 자동화 / 프로젝트 전체 리팩토링</td>
+              </tr>
+              <tr>
+                <td>장점</td>
+                <td>설치 없이 바로 / 어느 기기에서나 / 초보자도 5분 안에 시작</td>
+                <td class="roo-col">파일 직접 읽기·쓰기 / 터미널 자동 실행 / 프로젝트 전체 이해</td>
+              </tr>
+              <tr>
+                <td>단점</td>
+                <td>복붙 반복 / 터미널은 직접 / 코드 외부 전송</td>
+                <td class="roo-col">VS Code 초기 설치 필요 / API 키 발급 과정 있음 / 모바일 불편</td>
+              </tr>
+              <tr>
+                <td>사내TOOL</td>
+                <td>DSAssistant</td>
+                <td class="roo-col"><strong>CodeMate, OpenCode, Roo</strong></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <div class="info-box">
-          💡 <strong>팁:</strong> 설치 중 오류가 생기면 편하게 문의해 주세요. 
+        <div class="select-guide">
+          <div class="select-guide-title">선택 가이드</div>
+          <div class="select-row"><span class="select-arrow">→</span><span>빠른 질문, 글쓰기, 요약이 필요하다면 → <strong>ChatGPT / Claude 웹</strong></span></div>
+          <div class="select-row"><span class="select-arrow">→</span><span>파일을 열고 실제로 코드를 고쳐야 한다면 → <strong>Roo</strong></span></div>
+          <div class="select-row"><span class="select-arrow">→</span><span>LLM Chat을 통해 최적 경로를 설계하고, Code Agent로 실제로 그 길을 따라 목적지까지.</span></div>
         </div>
 
       </div>
@@ -82,7 +78,7 @@
   <footer class="bottombar" id="dots"></footer>
   <button class="paw-btn" id="pawBtn" onclick="goto(1)" title="처음으로 ↩">🏠</button>
 </div>
-<script>const SLIDE = 7; const TOTAL = 10;</script>
+<script>const SLIDE = 7; const TOTAL = 11;</script>
 <script src="nav.js"></script>
 </body>
 </html>
