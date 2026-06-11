@@ -67,6 +67,15 @@
     .bar-v-year { font-size: .76rem; font-weight: 700; color: var(--muted); margin-top: 6px; }
     .bar-v-cagr { font-size: .66rem; color: var(--green); font-weight: 700; margin-top: 2px; }
     .chart-note { font-size: .68rem; color: var(--muted); margin-top: 12px; line-height: 1.6; }
+
+    /* pg3 우측: 카드는 제목만 컴팩트하게, 남는 공간은 이미지 영역으로 */
+    #pg3 .split-row { align-items: stretch; }
+    #pg3 .split-right { display: flex; flex-direction: column; }
+    #pg3 .grid-2 { flex-shrink: 0; }
+    #pg3 .feature-card { display: flex; align-items: center; gap: 10px; padding: 10px 14px; }
+    #pg3 .feature-icon { width: 30px; height: 30px; font-size: .9rem; margin-bottom: 0; flex-shrink: 0; }
+    #pg3 .feature-title { font-size: .85rem; margin-bottom: 0; }
+    #pg3 .img-placeholder { flex: 1; margin-top: 14px; display: flex; align-items: center; justify-content: center; }
   </style>
 </head>
 <body>
@@ -320,26 +329,22 @@
               <div class="feature-card">
                 <div class="feature-icon">📂</div>
                 <div class="feature-title">파일 직접 읽기 · 쓰기</div>
-                <div class="feature-desc">프로젝트의 여러 파일을 한 번에 읽고, 필요한 부분을 직접 수정합니다.</div>
               </div>
               <div class="feature-card">
                 <div class="feature-icon">💻</div>
                 <div class="feature-title">터미널 직접 실행</div>
-                <div class="feature-desc">명령어 실행 → 결과 확인 → 에러 발생 시 재시도까지 자동으로 처리합니다.</div>
               </div>
               <div class="feature-card">
                 <div class="feature-icon">🧠</div>
                 <div class="feature-title">모델 선택 가능</div>
-                <div class="feature-desc">Claude, GPT 등 원하는 LLM을 자유롭게 선택해서 사용할 수 있습니다.</div>
               </div>
               <div class="feature-card">
                 <div class="feature-icon">🏢</div>
                 <div class="feature-title">사내 API 사용 가능</div>
-                <div class="feature-desc">사내 LLM Gateway와 연결해 보안 걱정 없이 업무에 바로 적용할 수 있습니다.</div>
               </div>
             </div>
 
-            <div class="img-placeholder" style="margin-top:14px;">
+            <div class="img-placeholder">
               📸 예시 화면 추가 영역<br>
               (Roo 실행 화면 · Before / After 코드 비교 스크린샷 등)
             </div>
