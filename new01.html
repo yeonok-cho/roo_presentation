@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roo — [시안] 1/3 타이틀 + 서비스 소개</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* R, o, o 각 글자 왼쪽에서 순차 등장 (slide01과 동일) */
+    .hl { display: inline-block; animation: letterSlide 0.7s cubic-bezier(.4,0,.2,1) both; }
+    .hl-0 { animation-delay: 0.1s; }
+    .hl-1 { animation-delay: 0.5s; }
+    .hl-2 { animation-delay: 0.9s; }
+    @keyframes letterSlide {
+      from { transform: translateX(-60px); opacity: 0; }
+      to   { transform: translateX(0);     opacity: 1; }
+    }
+    .dot-carrier { display: inline-block; }
+    .hl-dot { display: inline-block; opacity: 0; position: relative; color: transparent; }
+    .dot-ball {
+      position: absolute;
+      width: 0.19em; height: 0.19em;
+      background: var(--primary);
+      border-radius: 50%;
+      left: 50%; bottom: 0.08em;
+      transform: translateX(-50%);
+      overflow: hidden;
+    }
+    .dot-mark {
+      position: absolute;
+      width: 2.5px; height: 68%;
+      background: rgba(255,255,255,0.72);
+      border-radius: 2px;
+      top: 16%; left: 50%;
+      transform: translateX(-50%);
+    }
+    .new01-hero { font-size: clamp(2.6rem, 7vw, 4.2rem); margin-bottom: 14px; }
+  </style>
+</head>
+<body>
+<div class="pres">
+  <header class="topbar">
+    <div class="topbar-brand"><div class="brand-dot">R</div> Roo 소개 <span class="preview-badge">간단화 시안 1 / 3</span></div>
+  </header>
+  <div class="slides-viewport">
+    <div class="slide">
+      <div class="slide-inner">
+
+        <div class="slide-num">01 &nbsp;·&nbsp; 타이틀 + AI 서비스 소개</div>
+
+        <div class="split-row">
+          <div class="split-left" style="flex: 0 0 42%;">
+            <div class="hero-name new01-hero">
+              <span class="hl hl-0">R</span><span class="hl hl-1">o</span><span class="hl hl-2">o</span><span class="dot-carrier"><span class="hero-accent hl-dot">.<span class="dot-ball"><span class="dot-mark"></span></span></span></span>
+            </div>
+            <div class="hero-subtitle">ROO와 함께 일하는 새로운 방법<br>— 코딩 에이전트 Roo 소개</div>
+            <p class="hero-desc">
+              ChatGPT, Claude처럼 묻고 답하는 AI를 넘어,<br>
+              파일을 직접 읽고 고치고 실행까지 해주는 AI를 소개합니다.
+            </p>
+            <div class="hero-presenter revealed" style="margin-top: 28px;">
+              <div class="hero-presenter-inner">
+                <span>발표자</span>
+                <strong>조연옥 / 통계기술 파트</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="split-right">
+            <div class="chart-panel-title">💬 요즘 많이 쓰는 AI 서비스</div>
+            <div class="svc-grid">
+              <div class="svc-card">
+                <div class="svc-icon" style="background:#10A37F22; color:#10A37F;">💬</div>
+                <div>
+                  <span class="svc-name">ChatGPT</span><span class="svc-maker">OpenAI</span>
+                  <div class="svc-desc">가장 널리 쓰이는 범용 AI 챗봇 — 글쓰기 · 검색 · 코딩 질문까지 다재다능</div>
+                </div>
+              </div>
+              <div class="svc-card">
+                <div class="svc-icon" style="background:var(--primary-bg); color:var(--primary);">📝</div>
+                <div>
+                  <span class="svc-name">Claude</span><span class="svc-maker">Anthropic</span>
+                  <div class="svc-desc">긴 문서 이해와 코딩에 강한 AI — Roo가 기본으로 사용하는 모델</div>
+                </div>
+              </div>
+              <div class="svc-card">
+                <div class="svc-icon" style="background:#4285F422; color:#4285F4;">🔍</div>
+                <div>
+                  <span class="svc-name">Gemini</span><span class="svc-maker">Google</span>
+                  <div class="svc-desc">Gmail · 검색 등 Google 서비스와 자연스럽게 연동</div>
+                </div>
+              </div>
+              <div class="svc-card svc-highlight">
+                <div class="svc-icon" style="background:var(--primary); color:#fff;">🤖</div>
+                <div>
+                  <span class="svc-name">Roo</span><span class="svc-maker">코딩 에이전트</span>
+                  <div class="svc-desc">대화에서 끝나지 않고 <strong>내 컴퓨터의 파일을 직접 읽고 쓰고 실행</strong>까지 — 오늘 소개할 주인공</div>
+                </div>
+              </div>
+            </div>
+            <div class="highlight-box" style="margin-top:14px;">
+              💡 같은 질문이라도, <strong>대화로 끝나는 AI</strong>와 <strong>실행까지 해주는 AI</strong>는 활용법이 완전히 다릅니다.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <footer class="bottombar"><span style="font-size:.7rem; color:var(--muted);">간단화 시안 — 검토용 (1 / 3, 미반영)</span></footer>
+</div>
+<div class="preview-nav"><a href="new02.html">다음 (2/3) →</a></div>
+<script>
+// 주황 점: 왼쪽에서 굴러서 제자리로 (slide01과 동일)
+window.addEventListener('load', function () {
+  var dot  = document.querySelector('.hl-dot');
+  var ball = dot && dot.querySelector('.dot-ball');
+  if (!dot) return;
+
+  var startX = -(dot.getBoundingClientRect().left + 100);
+  var DUR = 2000, DEL = 1400;
+
+  dot.animate([
+    { opacity: 0, transform: 'translateX(' + startX + 'px)', offset: 0   },
+    { opacity: 1, transform: 'translateX(' + startX + 'px)', offset: 0.01 },
+    { opacity: 1, transform: 'translateX(0px)',               offset: 1   }
+  ], { duration: DUR, delay: DEL, fill: 'both', easing: 'cubic-bezier(.2,0,.4,1)' });
+
+  if (ball) {
+    ball.animate([
+      { transform: 'translateX(-50%) rotate(0deg)'    },
+      { transform: 'translateX(-50%) rotate(-720deg)' }
+    ], { duration: DUR, delay: DEL, fill: 'both', easing: 'cubic-bezier(.2,0,.4,1)' });
+  }
+});
+</script>
+</body>
+</html>
