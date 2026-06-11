@@ -324,6 +324,65 @@ html, body {
 .cta-sub  { font-size: .83rem; color: rgba(255,255,255,.8); }
 .qa-box { margin-top: 12px; text-align: center; font-size: .88rem; color: var(--muted); }
 
+/* ===== 간단화 시안 (Draft Preview) ===== */
+.split-row { display: flex; gap: 40px; align-items: flex-start; }
+.split-left, .split-right { flex: 1; min-width: 0; }
+.split-title { font-size: 1.25rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.25; color: var(--text); margin-bottom: 4px; }
+.split-sub { font-size: .8rem; color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
+
+.preview-badge {
+  display: inline-block; font-size: .68rem; font-weight: 700;
+  color: var(--muted); background: var(--soft); border: 1px solid var(--border);
+  border-radius: 99px; padding: 3px 10px; margin-left: 10px;
+}
+.preview-nav { position: fixed; bottom: 16px; right: 24px; display: flex; gap: 8px; z-index: 10; }
+.preview-nav a {
+  padding: 8px 16px; border-radius: 99px; font-size: .78rem; font-weight: 700;
+  background: var(--surface); border: 1px solid var(--border); color: var(--muted);
+  text-decoration: none; box-shadow: var(--shadow); transition: color .15s, border-color .15s;
+}
+.preview-nav a:hover { color: var(--primary); border-color: var(--primary-br); }
+
+/* AI 서비스 카드 */
+.svc-grid { display: flex; flex-direction: column; gap: 10px; }
+.svc-card {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 14px 18px; box-shadow: var(--shadow);
+}
+.svc-card.svc-highlight { border-color: var(--primary-br); background: var(--primary-bg); }
+.svc-icon { width: 42px; height: 42px; flex-shrink: 0; border-radius: 10px; display: grid; place-items: center; font-size: 1.3rem; }
+.svc-name { font-size: .92rem; font-weight: 800; color: var(--text); }
+.svc-maker { font-size: .68rem; color: var(--muted); font-weight: 600; margin-left: 6px; }
+.svc-desc { font-size: .8rem; color: var(--muted); line-height: 1.5; margin-top: 2px; }
+
+/* 작동 방식 흐름 비교 */
+.flow-compare { display: flex; flex-direction: column; gap: 14px; }
+.flow-block { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; box-shadow: var(--shadow); }
+.flow-block.flow-roo { border-color: var(--primary-br); background: var(--primary-bg); }
+.flow-block-head { display: flex; align-items: center; gap: 8px; font-size: .88rem; font-weight: 800; margin-bottom: 10px; color: var(--text); }
+.flow-steps { display: flex; flex-direction: column; }
+.flow-step { display: flex; align-items: flex-start; gap: 10px; position: relative; padding-bottom: 8px; }
+.flow-step:not(:last-child)::before { content: ''; position: absolute; left: 10px; top: 22px; bottom: 0; width: 2px; background: var(--border); }
+.flow-roo .flow-step:not(:last-child)::before { background: var(--primary-br); }
+.flow-step-num {
+  width: 21px; height: 21px; flex-shrink: 0; background: var(--soft); border: 1px solid var(--border);
+  border-radius: 99px; display: grid; place-items: center; font-size: .65rem; font-weight: 700; color: var(--muted); z-index: 1;
+}
+.flow-roo .flow-step-num { background: var(--primary); border-color: var(--primary); color: #fff; }
+.flow-step-text { font-size: .78rem; color: var(--text); line-height: 1.45; padding-top: 2px; }
+
+/* 이미지 추가 영역 */
+.img-placeholder {
+  border: 2px dashed var(--border); border-radius: var(--radius);
+  padding: 28px 16px; text-align: center; color: var(--muted);
+  font-size: .78rem; background: var(--soft); line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+  .split-row { flex-direction: column; }
+}
+
 @media (max-width: 640px) {
   .slide { padding: 20px 14px 64px; }
   .topbar { padding: 10px 14px; }
